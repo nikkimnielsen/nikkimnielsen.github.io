@@ -1,0 +1,33 @@
+NOTES FOR TABLE 1 of Paper 4 (file=Paper4Table1.txt)
+
+values of "9999" indicate no data
+
+Table columns:
+
+ (1) QSO identifier
+ (2) Julian 2000 designation (J-Name)
+ (3) galaxy spectroscopic redshift
+ (4) rest-frame color, B-K [AB]
+ (5) quasar-galaxy impact parameter [kpc]
+ (6) impact parameter normalized by the virial radius, D/Rvir [unitless]
+ (7) galaxy virial mass in log space, log (M_h/M_sun) [log Msun]
+     negative uncertainty on virial mass [log Msun]
+     positive uncertainty on virial mass [log Msun]
+ (8) galaxy maximum circular velocity, V_c^{max} [km/s]
+     negative uncertainty on maximum circular velocity [km/s]
+     positive uncertainty on maximum circular velocity [km/s]
+ (9) MgII 2796 absorption redshift (optical depth weighted median)
+(10) MgII 2796 rest-frame equivalent width [angstroms]
+(11) uncertainty in equivalent width [angstroms; -1.0 indicates upper limit]
+(12) MgII 2796 column density in log-space [cm^-2]
+(13) uncertainty in column density [cm^-2; -1.0 indicates note (b) below]
+(14) reference for measurement of column 9-13 data (note (a) below)
+
+Table Notes:
+
+ (a) MgII Absorption Measurements:
+     (1) Kacprzak, G.G., Churchill, C.W., Evans, J.L., et al. 2011, MNRAS, 416, 3118 (KCEMS11)
+     (2) Evans, J.L. 2011, Ph.D. Thesis, New Mexico State University
+     (3) This work
+
+ (b) At least one cloud is not well constrained, resulting in a large uncertainty.

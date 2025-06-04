@@ -1,0 +1,43 @@
+NOTES FOR TABLE 3 of Paper 1 (file=Paper1Table3.txt)
+
+values of "9999" indicate no data
+
+Table columns:
+
+ (1) QSO identifier
+ (2) Julian 2000 designation (J-Name)
+ (3) galaxy spectroscopic redshift
+ (4) MgII absorption redshift 
+ (5) MgII 2796 rest-frame equivalent width [angstroms]
+ (6) uncertainty in equivalent width [angstroms; -1.0 indicates upper limit]
+ (7) MgII doublet ratio
+ (8) uncertainty in doubelt ratio
+ (9) reference for columns 4, 5, and 6
+(10) quasar-galaxy impact parameter [kpc]
+(11) k-correction to obtain M_B (from mag listed in col 8 of Table 1)
+(12) absolute B-band magnitude, M_B [AB]
+(13) B-band luminosity, L_B/L*_B
+(14) k-correction to obtain M_K (from mag listed in col 11 of Table 1)
+(15) absolute K-band magnitude, M_K [AB]
+(16) K-band luminosity, L_K/L*_K
+(17) rest-frame color, B-K [AB].
+
+Table Notes:
+
+References: (there is no #7)
+ (1) Guillemin, P., & Bergeron, J. 1997, A&A, 328, 499 (GB97)
+ (2) Churchill, C.W., Kacprzak, G.G., Nielsen, N.M., et al. 2013, ApJ, submitted (Churchill13)
+ (3) Kacprzak, G.G., Churchill, C.W., Evans, J.L., et al. 2011, MNRAS, 416, 3118 (KCEMS11)
+ (4) Steidel, C.C., Dickinson, M., Meyer, D.M., et al. 1997, ApJ, 480, 586 (Steidel97)
+ (5) Chen, H.-W., & Tinker, J.L. 2008, ApJ, 687, 745 (CT08)
+ (6) Chen, H.-W., Helsby, J.E., Gauthier, J.R., et al. 2010, ApJ, 714, 1521 (Chen10)
+ (8) Steidel, C.C., Dickinson, M., & Persson, S.E. 1994, ApJ, 437, L75 (SDP94)
+ (9) Steidel, C.C. 1995, QSO Absorption Lines, 139 
+(10) Kacprzak, G.G., Murphy, M.T., & Churchill, C.W. 2010, MNRAS, 406, 445 (KMC10)
+(11) Kacprzak, G.G., Churchill, C.W., Barton, E.J., & Cooke, J. 2011, ApJ, 733, 105 (KCBC11)
+(12) Gauthier, J.-R., & Chen, H.-W. 2011, MNRAS, 418, 2730 (GC11)
+(13) Barton, E.J., & Cooke, J. 2009, AJ, 138, 1817 (BC09)
+(14) Evans, J.L. 2011, Ph.D. Thesis, New Mexico State University
+(15) This work
+
+

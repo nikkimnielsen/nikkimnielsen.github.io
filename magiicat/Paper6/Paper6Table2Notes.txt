@@ -1,0 +1,35 @@
+NOTES FOR TABLE 2 of Paper 6 (file=Paper6Table2.txt)
+
+values of "9999" indicate no data
+
+Table columns:
+
+ (1) QSO identifier
+ (2) Julian 2000 designation (J-Name)
+ (3) galaxy spectroscopic redshift
+ (4) MgII absorption redshift 
+ (5) MgII 2796 rest-frame equivalent width [angstroms]
+ (6) uncertainty in equivalent width [angstroms; -1.0 indicates upper limit]
+ (7) MgII doublet ratio
+ (8) uncertainty in doubelt ratio
+ (9) reference for columns 4, 5, and 6
+(10) quasar-galaxy impact parameter [kpc]
+(11) k-correction to obtain M_B (from mag listed in col 8 of Table 1)
+(12) absolute B-band magnitude, M_B [AB]
+(13) B-band luminosity, L_B/L*_B
+(14) k-correction to obtain M_K (from mag listed in col 11 of Table 1)
+(15) absolute K-band magnitude, M_K [AB]
+(16) K-band luminosity, L_K/L*_K
+(17) rest-frame color, B-K [AB].
+
+Table Notes:
+
+References:
+ (1) Guillemin, P., & Bergeron, J. 1997, A&A, 328, 499 (GB97)
+ (3) Kacprzak, G.G., Churchill, C.W., Evans, J.L., et al. 2011, MNRAS, 416, 3118 (KCEMS11)
+ (6) Chen, H.-W., Helsby, J.E., Gauthier, J.R., et al. 2010, ApJ, 714, 1521 (Chen10)
+(10) Kacprzak, G.G., Churchill, C.W., Barton, E.J., & Cooke, J. 2011, ApJ, 733, 105 (KCBC11)
+(13) Evans, J.L. 2011, Ph.D. Thesis, New Mexico State University
+(14) This work
+
+

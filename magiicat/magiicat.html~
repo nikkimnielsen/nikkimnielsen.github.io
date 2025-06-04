@@ -1,0 +1,623 @@
+<!DOCTYPE HTML>
+<!--
+    Stellar by HTML5 UP
+    html5up.net | @ajlkn
+    Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+  -->
+<html>
+  <head>
+    <title>MAGIICAT</title> <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,
+    initial-scale=1, user-scalable=no" /> <link rel="stylesheet"
+    href="assets/css/main.css" />
+    <noscript><link rel="stylesheet" href="assets/css/noscript.css"
+    /></noscript>
+
+
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-H7T6KZ5FJM"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'G-H7T6KZ5FJM');
+    </script>
+
+
+  </head>
+  <body class="is-preload">
+
+    <!-- Wrapper -->
+    <div id="wrapper">
+
+      <!-- Header -->
+      <header id="header" class="alt">
+	<h1>The MgII Absorber&ndash;Galaxy Catalog<br>MAGIICAT</h1>
+      </header>
+
+      <!-- Nav -->
+      <nav id="nav">
+	<ul>
+	  <li><a href="#intro" class="active">Overview</a></li>
+	  <li><a href="#pubs">Publications</a></li>
+	  <li><a href="#data">Data</a></li>
+	  <li><a href="#team">Team</a></li>
+	</ul>
+      </nav>
+
+      <!-- Main -->
+      <div id="main">
+
+	<!-- Introduction -->
+	<section id="intro" class="main">
+	  <div class="spotlight">
+	    <div class="content">
+	      <header class="major">
+		<h2>Catalog Overview</h2>
+	      </header>
+
+	      <p>The MgII Absorber&ndash;Galaxy Catalog (MAGIICAT;
+		pronounced "magic-cat") is a compilation of some 200
+		spectroscopically-confirmed galaxies with MgII
+		&lambda;&lambda;2796, 2803 absorption measurements in
+		quasar spectra with projected separations of no more
+		than 200 kpc. The data published to date and the
+		associated papers are publicly available here.
+
+		<ul class="actions">
+		  <li><a href="#data" class="button primary">Take me
+		  straight to the data!</a></li>
+		</ul>
+	    </div>
+	    <span class="logo"><img src="../images/magiicat-logo.png"
+	    alt="" width="300" />
+	      <figcaption><center>Trixie the
+	      MAGIICAT</center></figcaption></span>
+	  </div>
+
+
+	  <ul class="statistics">
+	    <li class="style1">
+	      <strong>182</strong> Isolated Galaxies
+	    </li>
+	    <li class="style2">
+	      <strong>29</strong> Group Environments
+	    </li>
+	    <li class="style3">
+	      <strong>0.07&ndash;1.1</strong> Redshift
+	    </li>
+	    <li class="style4">
+	      <strong>&lt; 200 kpc</strong> Impact Parameter
+	    </li>
+	    <li class="style5">
+	      <strong>0.01&ndash;4.4</strong> Equivalent Width<br>(&#8491;)
+	    </li>
+	  </ul>
+
+
+	</section>
+
+	<!-- First Section -->
+	<section id="pubs" class="main special">
+	  <header class="major">
+	    <h2>Publications</h2>
+	  </header>
+
+
+	  <section>
+	    <header class="minor">
+	      <h3>MAGIICAT I. The MgII Absorber&ndash;Galaxy
+	      Catalog</h3>
+	    </header>
+	    <span class="image left"><img src="Paper1/Paper1Fig1b.png"
+	    alt="" width="400"/></span>
+
+	    <div align="left">
+	      The catalog is a compilation of the MgII
+	      absorber&ndash;galaxy pairs in the literature with
+	      spectroscopic galaxy redshifts. In Paper I, we describe
+	      the surveys included, the methods for standardizing
+	      absorption and galaxy properties, and tabulate the
+	      data. Only isolated galaxies are included in Paper
+	      I. See Paper VI below for group environments.
+	      <br><br> (Left) The relative locations of each galaxy
+	      (points) and the associated background quasar (plus
+	      sign) for a majority of the survey data included in
+	      MAGIICAT.<br><br>
+	    </div>
+
+
+	    <ul class="actions fit">
+	      <li><a href="https://ui.adsabs.harvard.edu/#abs/2013ApJ...776..114N/abstract"
+	      class="button">SAO/NASA ADS</a></li>
+	      <li><a href="https://arxiv.org/abs/1304.6716"
+	      class="button">arXiv.org</a></li>
+	      <li><a href="#data" class="button">Data</a></li>
+	    </ul>
+
+	  </section>
+
+
+	  <hr />
+
+	  <section>
+	    <header class="minor">
+	      <h3>MAGIICAT II. General Characteristics of the MgII
+	      Circumgalactic Medium</h3>
+	    </header>
+
+	    <span class="image right"><img src="Paper2/Paper2Fig1.png"
+	    alt="" /></span>
+
+	    <div align="left">
+	      With the isolated galaxy sample, we investigated the
+	      dependence of MgII absorption characteristics on host
+	      galaxy properties. This work focused on equivalent
+	      widths, covering fractions, and luminosity-scaled
+	      absorption radii for various galaxy luminosities,
+	      colors, impact parameters, and redshifts. The MgII
+	      circumgalactic medium is more extended and has a larger
+	      covering fraction around higher luminosity, bluer, and
+	      higher redshift galaxies.
+
+	      <br><br>(Right) MgII equivalent width is anti-correlated
+	      with quasar&ndash;galaxy impact parameter at the
+	      7.9&sigma; level and the dependence is fit well by a
+	      log-linear relation.<br><br>
+	    </div>
+
+	    <ul class="actions fit">
+	      <li><a href="https://ui.adsabs.harvard.edu/#abs/2013ApJ...776..115N/abstract"
+	      class="button">SAO/NASA ADS</a></li>
+	      <li><a href="https://arxiv.org/abs/1211.1380"
+	      class="button">arXiv.org</a></li>
+	      <li><a href="#data" class="button disabled">Data</a></li>
+	    </ul>
+
+	  </section>
+
+	  <hr />
+
+	  <section>
+
+	    <header class="minor">
+	      <h3>The Self-Similarity of the Circumgalactic Medium
+	      with Galaxy Virial Mass: Implications for Cold-Mode
+	      Accretion</h3>
+	    </header>
+
+	    <span class="image
+	    left"><img src="MassLetter/MassLetterFig1.png" alt=""
+	    /></span>
+
+	    <div align="left">
+	      Using halo abundance matching, we obtained galaxy virial
+	      masses and radii for MAGIICAT isolated galaxies and
+	      studied the mass-dependence of equivalent widths and
+	      covering fractions. The circumgalactic medium is
+	      self-similar with halo mass. Constant covering fractions
+	      with mass indicate that outflows or sub-halos contribute
+	      to absorption in more massive galaxies despite the
+	      prediction that cold mode accretion is quenched.
+
+	      <br><br> (Left) More massive galaxies have larger
+	      equivalent widths at a given impact parameter than less
+	      massive galaxies. This mass segregation vanishes when
+	      normalizing impact parameter by the virial
+	      radius.<br><br>
+	    </div>
+
+	    <ul class="actions fit">
+	      <li><a href="https://ui.adsabs.harvard.edu/#abs/2013ApJ...763L..42C/abstract"
+	      class="button">SAO/NASA ADS</a></li>
+	      <li><a href="https://arxiv.org/abs/1211.1008"
+	      class="button">arXiv.org</a></li>
+	      <li><a href="#data" class="button disabled">Data</a></li>
+	    </ul>
+
+	  </section>
+
+	  <hr />
+
+
+	  <section>
+
+	    <header class="minor">
+	      <h3>MAGIICAT III. Interpreting Self-Similarity of the
+	      Circumgalactic Medium with Virial Mass using MgII
+	      Absorption</h3>
+	    </header>
+
+	    <span class="image right"><img src="Paper3/Paper3Fig8.png"
+	    alt="" /></span>
+
+	    <div align="left">
+	      Following up on the self-similarity of the CGM with
+	      mass, we found that MgII primarily resides within 0.3
+	      R<sub>vir</sub> regardless of halo mass and for all
+	      equivalent width measurements. We also investigated the
+	      dependence of MgII on the cooling radius, finding that
+	      the cooling radius is a poor indicator of MgII
+	      absorption strength. The presence of absorption outside
+	      this radius suggests that cool/warm CGM gas does not
+	      solely originate from fragmentation and condensation out
+	      of the hot CGM. Our halo abundance matching methods are
+	      detailed in Appendix A.
+
+	      <br><br> (Right) The MgII equivalent width is constant
+	      with mass, contrary to previous absorber&ndash;galaxy
+	      cross-correlation studies.<br><br>
+	    </div>
+
+	    <ul class="actions fit">
+	      <li><a href="https://ui.adsabs.harvard.edu/#abs/2013ApJ...779...87C/abstract"
+	      class="button">SAO/NASA ADS</a></li>
+	      <li><a href="https://arxiv.org/abs/1308.2618"
+	      class="button">arXiv.org</a></li>
+	      <li><a href="#data" class="button">Data</a></li>
+	    </ul>
+
+	  </section>
+
+	  <hr />
+
+
+
+	  <section>
+
+	    <header class="minor">
+	      <h3>MAGIICAT IV. Kinematics of the Circumgalactic Medium
+	      and Evidence for <br>Quiescent Evolution around Red
+	      Galaxies</h3>
+	    </header>
+
+	    <span class="image left"><img src="Paper4/Paper4Fig6.png"
+	    alt="" /></span>
+
+	    <div align="left">
+	      A subset of about 40 MAGIICAT absorbers (and an
+	      additional 30 non-absorbers) have high-resolution
+	      spectral coverage with HIRES/Keck and/or UVES/VLT. With
+	      this sample, we studied the absorber kinematics and
+	      column densities as a function of galaxy redshift and
+	      impact parameter.
+
+	      <br><br>(Left) The kinematics and column densities for
+	      absorbers associated with blue galaxies do not evolve
+	      with redshift, indicating an active baryon cycle to
+	      replenish the CGM with cool gas. For red galaxies, the
+	      velocity dispersions decrease and column densities
+	      increase with redshift. The CGM of red galaxies appears
+	      to be impacted by star formation quenching.<br><br>
+
+	    </div>
+
+	    <ul class="actions fit">
+	      <li><a href="https://ui.adsabs.harvard.edu/#abs/2016ApJ...818..171N/abstract"
+	      class="button">SAO/NASA ADS</a></li>
+	      <li><a href="https://arxiv.org/abs/1512.06969"
+	      class="button">arXiv.org</a></li>
+	      <li><a href="#data" class="button">Data</a></li>
+	    </ul>
+
+	  </section>
+
+	  <hr />
+
+	  <section>
+
+	    <header class="minor">
+	      <h3>Tracing Outflows and Accretion: A Bimodal Azimuthal
+	      Dependence of MgII Absorption</h3>
+	    </header>
+
+	    <span class="image right"><img src="KCN12/KCN12Fig2.png"
+	    alt="" /></span>
+
+	    <div align="left">
+	      Galaxy morphological properties were modeled
+	      from <i>HST</i> or SDSS images for 88 absorbing and 35
+	      non-absorbing galaxies. We investigated the dependence
+	      of MgII covering fractions on the azimuthal angle: the
+	      angle between the projected galaxy major axis and the
+	      quasar sightline. MgII absorption is more likely found
+	      within 20&deg; of the major axis and within 50&deg; of
+	      the minor axis.
+
+	      <br><br>(Right) The azimuthal angle dependence of MgII
+	      is most strongly seen in blue star-forming galaxies,
+	      whereas the distribution is flat for red passive
+	      galaxies. <br><br>
+
+	    </div>
+
+	    <ul class="actions fit">
+	      <li><a href="https://ui.adsabs.harvard.edu/#abs/2012ApJ...760L...7K/abstract"
+	      class="button">SAO/NASA ADS</a></li>
+	      <li><a href="https://arxiv.org/abs/1205.0245"
+	      class="button">arXiv.org</a></li>
+	      <li><a href="#data" class="button disabled">Data</a></li>
+	    </ul>
+
+	  </section>
+
+	  <hr />
+
+
+	  <section>
+
+	    <header class="minor">
+	      <h3>MAGIICAT V. Orientation of Outflows and Accretion
+	      Determine the Kinematics and <br>Column Densities of the
+	      Circumgalactic Medium</h3>
+	    </header>
+
+	    <span class="image left"><img src="Paper5/Paper5Fig4.png"
+	    alt="" /></span>
+
+	    <div align="left">
+	      Baryon cycle processes are expected to exhibit differing
+	      kinematic and column density properties depending on the
+	      orientation of the host galaxy. We investigated these
+	      differences for a sample of 30 galaxies with MgII in
+	      high-resolution quasar spectra and modeled galaxy
+	      morphologies (inclinations and azimuthal angles)
+	      from <i>HST</i> images.
+
+	      <br><br>Gas entrained in biconical outflows along the
+	      minor axis of star-forming galaxies appears to be
+	      fragmented with large velocity
+	      dispersions. Accreting/rotating gas along galaxy major
+	      axes has smaller velocity dispersions and may be more
+	      coherent. Quiescent galaxies appear to exhibit
+	      little-to-no outflows along their minor axes, but may
+	      host rotating gas along their major axes.
+
+	      <br><br> (Left) Absorbers hosted by blue, face-on
+	      galaxies have the largest velocity dispersions,
+	      indicative of outflows, whereas red, face-on galaxies
+	      have the smallest velocity dispersions, suggesting a
+	      lack of outflowing gas. For absorbers hosted by edge-on
+	      galaxies, there are no significant differences in their
+	      kinematics regardless of the host galaxy star formation
+	      activity.<br><br>
+
+	    </div>
+
+	    <ul class="actions fit">
+	      <li><a href="https://ui.adsabs.harvard.edu/#abs/2015ApJ...812...83N/abstract"
+	      class="button">SAO/NASA ADS</a></li>
+	      <li><a href="https://arxiv.org/abs/1505.07167"
+	      class="button">arXiv.org</a></li>
+	      <li><a href="#data" class="button disabled">Data</a></li>
+	    </ul>
+
+	  </section>
+
+	  <hr />
+
+
+
+	  <section>
+
+	    <header class="minor">
+	      <h3>MAGIICAT VI. The MgII Intragroup Medium is
+	      Kinematically Complex</h3>
+	    </header>
+
+	    <span class="image right"><img src="Paper6/Paper6Fig3.png"
+	    alt="" /><img src="Paper6/Paper6Fig10.png" alt=""
+	    /></span>
+
+	    <div align="left">
+	      Working with a sample of 29 group environments
+	      (2&ndash;5 galaxies within 200 kpc of the quasar
+	      sightline and within a line-of-sight velocity separation
+	      of 500 km s<sup>-1</sup>), we examined the MgII
+	      intragroup medium. A superposition of multiple galaxy
+	      CGM predicts much of the observed equivalent width, but
+	      greatly overpredicts the kinematics. MgII is likely
+	      deposited into an intragroup medium via outflowing winds
+	      and/or from tidal stripping of interacting member
+	      galaxies.
+
+	      <br><br> (Right, top) Group environments, with connected
+	      triangles, have larger median equivalent widths and
+	      covering fractions than isolated galaxies, gray points
+	      and downward arrows.
+
+	      <br><br> (Right, bottom) Comparing average absorption
+	      profiles, group absorbers display more optical depth at
+	      larger velocities (roughly 100 km s<sup>-1</sup>) than
+	      isolated absorbers.<br><br>
+
+	    </div>
+
+	    <ul class="actions fit">
+	      <li><a href="https://ui.adsabs.harvard.edu/#abs/2018arXiv180809562N/abstract"
+	      class="button">SAO/NASA ADS</a></li>
+	      <li><a href="https://arxiv.org/abs/1808.09562"
+	      class="button">arXiv.org</a></li>
+	      <li><a href="#data" class="button">Data</a></li>
+	    </ul>
+
+	  </section>
+
+
+	</section>
+
+
+	<!-- Second Section -->
+	<section id="data" class="main special">
+	  <header class="major">
+	    <h2>Data</h2>
+
+	    <ul class="actions fit">
+	      <li><a href="magiicatdata.tar.gz" class="button
+	      primary">Get it all (tar.gz)</a></li>
+	    </ul>
+
+	  </header>
+
+	  <h2>Isolated Galaxies</h2>
+
+	  <ul class="actions fit">
+	    <li><a href="data.html#pap1tab2" class="button">MAGIICAT I
+	    Table 2: Observed Galaxy Properties</a></li>
+	  </ul>
+
+	  <ul class="actions fit">
+	    <li><a href="data.html#pap1tab3" class="button">MAGIICAT I
+	    Table 3: Calculated Galaxy and Absorption
+	    Properties</a></li>
+	  </ul>
+
+	  <ul class="actions fit">
+	    <li><a href="data.html#pap3tab1" class="button">MAGIICAT
+	    III Table 1: Masses, Virial Radii, Cooling Radii</a></li>
+	  </ul>
+
+	  <ul class="actions fit">
+	    <li><a href="data.html#pap4tab1" class="button">MAGIICAT
+	    IV Table 1: Kinematics Absorber&ndash;Galaxy
+	    Pairs</a></li>
+	  </ul>
+
+
+
+
+	  <h2>Group Environments</h2>
+
+	  <ul class="actions fit">
+	    <li><a href="data.html#pap6tab1" class="button">MAGIICAT
+	    VI Table 1: Observed Galaxy Properties</a></li>
+	  </ul>
+
+	  <ul class="actions fit">
+	    <li><a href="data.html#pap6tab2" class="button">MAGIICAT
+	    VI Table 2: Calculated Galaxy and Absorption
+	    Properties</a></li>
+	  </ul>
+
+
+
+	</section>
+
+
+	<section id="team" class="main special">
+	  <header class="major">
+	    <h2>The Team</h2>
+	  </header>
+
+	  <ul class="statistics">
+	    <li class="style2">
+	      <span class="image
+	      fit"><img src="images/Nikki_Jan2024_2.jpg" alt=""
+	      width="170"/></span>
+	      <strong><a href="http://astronomy.swin.edu.au/~nnielsen/">Nikki<br>
+	      Nielsen</a></strong> <br>Assistant Professor, University
+	      of Oklahoma
+	    </li>
+	    <li class="style3">
+	      <span class="image
+	      fit"><img src="images/Chris-2018-C.jpeg" alt=""
+	      /></span>
+	      <strong><a href="http://astronomy.nmsu.edu/cwc/">Chris
+	      Churchill</a></strong> <br> Professor, New Mexico State
+	      University
+	    </li>
+	    <li class="style4">
+	      <span class="image fit"><img src="images/ggk.jpeg"
+	      alt="" /></span>
+	      <strong><a href="http://astronomy.swin.edu.au/~gkacprzak/">Glenn
+	      Kacprzak</a></strong> <br> Associate Professor,
+	      Swinburne University of Technology
+	    </li>
+	    <li class="style5">
+	      <span class="image fit"><img src="images/mmurphy.jpg"
+	      alt=""/></span>
+	      <strong><a href="http://astronomy.swin.edu.au/~mmurphy/">Michael
+	      Murphy</a></strong> <br> CAS Deputy Director and
+	      Professor, Swinburne University of Technology
+	    </li>
+	  </ul>
+
+	  <section>
+	    <header class="minor">
+	      <h3>Additional contributors: Jessica L. Evans, Sebastian
+	      Trujillo-Gomez, and Stephanie K. Pointon</h3>
+	    </header>
+	  </section>
+
+
+	  <hr />
+	  <section>
+	    <header class="minor">
+	      <h3>We extend our gratitude to all the researchers whose
+		hard work over the last several decades resulted in
+		the growing database of published galaxies in quasar
+		fields and their associated quasar spectra. Without
+		their efforts, this work would not have been
+		possible.</h3>
+	    </header>
+	  </section>
+
+
+	</section>
+
+      </div>
+
+      <!-- Footer -->
+      <footer id="footer">
+	<section>
+	  <h2>Updates: November 2018</h2>
+
+	  <section>
+	    <div class="row">
+	      <ul>
+		<li>Added Group Environment data from MAGIICAT VI </li>
+		<li>Modified Isolated Galaxy sample to add more galaxies and move several to the group environment sample</li>
+		<li>Revamped website</li>
+	      </ul>
+	    </div>
+	  </section>
+
+	</section>
+	<section>
+	  <h2>Contact</h2>
+	  <dl class="alt">
+	    <dt>Who</dt>
+	    <dd>Asst Prof Nikki Nielsen</dd>
+	    <dt>Institution</dt>
+
+	    <dd>Homer L. Dodge Department of Physics & Astronomy <br> University of
+	      Oklahoma <br> Norman, OK, USA</dd>
+
+	    <dt>Website</dt>
+	    <dd><a href="http://astronomy.swin.edu.au/~nnielsen/">astronomy.swin.edu.au/~nnielsen</a></dd>
+	    <dt>Email</dt>
+	    <dd>nikkimnielsen (at) gmail.com</dd>
+	  </dl>
+
+	</section>
+	<p class="copyright">&copy; Nikki Nielsen &bull; Updated: November 2018 &bull; Design: <a href="https://html5up.net">HTML5 UP</a></p>
+      </footer>
+
+    </div>
+
+
+    <!-- Scripts -->
+    <script src="assets/js/jquery.min.js"></script>
+    <script src="assets/js/jquery.scrollex.min.js"></script>
+    <script src="assets/js/jquery.scrolly.min.js"></script>
+    <script src="assets/js/browser.min.js"></script>
+    <script src="assets/js/breakpoints.min.js"></script>
+    <script src="assets/js/util.js"></script>
+    <script src="assets/js/main.js"></script>
+
+
+
+  </body>
+</html>
+

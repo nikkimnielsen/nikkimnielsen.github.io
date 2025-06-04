@@ -1,0 +1,52 @@
+NOTES FOR TABLE 1 of Paper 3 (file=Paper3Table1.txt)
+
+values of "9999" indicate no data
+
+Table columns:
+
+ (1) QSO identifier
+ (2) Julian 2000 designation (J-Name)
+ (3) galaxy spectroscopic redshift
+ (4) quasar-galaxy impact parameter [kpc]
+ (5) absolute SDSS r-band magnitude, M_r [AB]
+ (6) galaxy virial mass in log space, log (M_h/M_sun) [log Msun]
+     negative uncertainty on virial mass [log Msun]
+     positive uncertainty on virial mass [log Msun]
+ (7) galaxy maximum circular velocity, V_c^{max} [km/s]
+     negative uncertainty on maximum circular velocity [km/s]
+     positive uncertainty on maximum circular velocity [km/s]
+ (8) galaxy virial radius, Rvir [kpc]
+     negative uncertainty on Rvir [kpc]
+     positive uncertainty on Rvir [kpc]
+ (9) impact parameter normalized by the virial radius, etav (D/Rvir) [unitless]
+     positive uncertainty on etav [unitless]
+     negative uncertainty on etav [unitless]
+(10) cooling radius, Rc [kpc]
+     positive uncertainty on Rc [kpc]
+     negative uncertainty on Rc [kpc]
+(11) impact parameter normalized by the cooling radius, etac (D/Rc) [unitless]
+     negative uncertainty on etac [unitless]
+     positive uncertainty on etac [unitless]
+(12) cooling radius normalized by the virial radius, Rc/Rv [unitless]
+     positive uncertainty on Rc/Rv [unitless]
+     negative uncertainty on Rc/Rv [unitless]
+(13) MgII 2796 rest-frame equivalent width [angstroms]
+     uncertainty in equivalent width [angstrongs; -1.0 indicates upper limit]
+
+Table Notes:
+
+ (a) Uncertainties are based upon uncertainties in the virial masses
+     (column 6). For some quantities a larger (smaller) virial mass
+     results in a smaller (larger) value such that the uncertainties
+     anti-correlate. [Applies to columns 7, 8, 9, 10, 11, and 12]
+
+ (b) Because the slope of Rc changes sign as a function of virial
+     mass, where the slope is positive the uncertainties correlate and
+     where the slope is negative they anti-correlate (see Figure
+     11). In the narrow virial mass ranges where the slope of Rc
+     changes sign, it is possible that both the upward and downward
+     uncertainties in virial mass can result in an upward (or
+     downward) uncertainty in Rc.
+
+Note on column (6): The units for the virial mass are M_sun in log
+space. There are no h^-1 factors in the value.

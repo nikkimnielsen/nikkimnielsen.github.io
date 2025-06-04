@@ -1,0 +1,48 @@
+NOTES FOR TABLE 1 of Paper 6 (file=Paper6Table1.txt)
+
+values of "9999" indicate no data
+
+Table columns:
+
+ (1) QSO identifier
+ (2) Julian 2000 designation (J-Name)
+ (3) galaxy spectroscopic redshift 
+ (4) quasar-galaxy right ascension offset from QSO [arcsec]
+ (5) quasar-galaxy declination offset,from QSO [arcsec]
+ (6) quasar-galaxy angular separation [arcsec]
+ (7) literature reference for columns 4, 5, and 6 
+ (8) value of apparent magnitude used to obtain M_B
+ (9) filter/band for apparent magnitude in column 8 (V=Vega, AB=AB)
+(10) literature reference for columns 8 and 9
+(11) value of apparent magnitude used to calculate M_K
+(12) filter/band for apparent magnitude in column 11 (V=Vega, AB=AB)
+(13) literature reference for columns 11 and 12
+(14) adopted galaxy spectral energy distribution for K-corrections*
+
+* (Sbc) indicates no color data, so Sbc SED adopted
+
+Table Notes:
+
+References: (there is no #5, 11, 12, 13)
+ (1) Guillemin, P., & Bergeron, J. 1997, A&A, 328, 499 (GB97)
+ (2) this work
+ (3) Kacprzak, G.G., Churchill, C.W., Evans, J.L., et al. 2011, MNRAS, 416, 3118 (KCEMS11)
+ (4) Steidel, C.C., Dickinson, M., Meyer, D.M., et al. 1997, ApJ, 480, 586 (Steidel97)
+ (6) Chen, H.-W., Helsby, J.E., Gauthier, J.R., et al. 2010, ApJ, 714, 1521 (Chen10)
+ (7) Steidel, C.C., Dickinson, M., & Persson, S.E. 1994, ApJ, 437, L75 (SDP94)
+ (8) Steidel (personal communication)
+ (9) Kacprzak, G.G., Murphy, M.T., & Churchill, C.W. 2010, MNRAS, 406, 445 (KMC10)
+(10) Kacprzak, G.G., Churchill, C.W., Barton, E.J., & Cooke, J. 2011, ApJ, 733, 105 (KCBC11)
+(14) NED/SDSS
+(15) NED/2MASS
+(16) Whiting, M.T., Webster, R.L., & Francis, P.J. 2006 MNRAS, 368, 341
+(17) Bielby, R., Crighton, N.H.M., Fumagalli, M., et al. 2017, MNRAS, 468, 1373
+(18) Peroux, C., Rahmani, H., Quiret, S., et al. 2017, MNRAS, 464, 2053
+(19) Rahmani, H., Peroux, C., Augustin, R., et al. 2018, MNRAS, 474, 254
+(20) Werk, J.K., Prochaska, J.X., Thom, C., et al. 2012, ApJS, 198, 3
+(21) Chen, H.-W., & Mulchaey, J.S. 2009, ApJ, 701, 1219
+(22) Chen, H.-W., Lanzetta, K.M., Webb, J.K., & Barcons, X. 2001, ApJ, 559, 654
+(23) Johnson, S.D., Chen, H.-W., & Mulchaey, J.S. 2013, MNRAS, 434, 1765
+(24) Meiring, J.D., Tripp, T.M., Prochaska, J.X., et al. 2011, ApJ, 732, 35
+(25) this work
+

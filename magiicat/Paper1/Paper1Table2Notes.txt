@@ -1,0 +1,43 @@
+NOTES FOR TABLE 2 of Paper 1 (file=Paper1Table2.txt)
+
+values of "9999" indicate no data
+
+Table columns:
+
+ (1) QSO identifier
+ (2) Julian 2000 designation (J-Name)
+ (3) galaxy spectroscopic redshift 
+ (4) quasar-galaxy right ascension offset from QSO [arcsec]
+ (5) quasar-galaxy declination offset,from QSO [arcsec]
+ (6) quasar-galaxy angular separation [arcsec]
+ (7) literature reference for columns 4, 5, and 6 
+ (8) value of apparent magnitude used to obtain M_B
+ (9) filter/band for apparent magnitude in column 8 (V=Vega, AB=AB)
+(10) literature reference for columns 8 and 9
+(11) value of apparent magnitude used to calculate M_K
+(12) filter/band for apparent magnitude in column 11 (V=Vega, AB=AB)
+(13) literature reference for columns 11 and 12
+(14) adopted galaxy spectral energy distribution for K-corrections*
+
+* (Sbc) indicates no color data, so Sbc SED adopted
+
+Table Notes:
+
+References: (there is no #7)
+ (1) Guillemin, P., & Bergeron, J. 1997, A&A, 328, 499 (GB97)
+ (2) this work
+ (3) Kacprzak, G.G., Churchill, C.W., Evans, J.L., et al. 2011, MNRAS, 416, 3118 (KCEMS11)
+ (4) Steidel, C.C., Dickinson, M., Meyer, D.M., et al. 1997, ApJ, 480, 586 (Steidel97)
+ (5) Chen, H.-W., & Tinker, J.L. 2008, ApJ, 687, 745 (CT08)
+ (6) Chen, H.-W., Helsby, J.E., Gauthier, J.R., et al. 2010, ApJ, 714, 1521 (Chen10)
+ (8) Steidel, C.C., Dickinson, M., & Persson, S.E. 1994, ApJ, 437, L75 (SDP94)
+ (9) Steidel, C.C. 1995, QSO Absorption Lines, 139
+(10) Kacprzak, G.G., Murphy, M.T., & Churchill, C.W. 2010, MNRAS, 406, 445 (KMC10)
+(11) Kacprzak, G.G., Churchill, C.W., Barton, E.J., & Cooke, J. 2011, ApJ, 733, 105 (KCBC11)
+(12) Gauthier, J.-R., & Chen, H.-W. 2011, MNRAS, 418, 2730 (GC11)
+(13) Barton, E.J., & Cooke, J. 2009, AJ, 138, 1817 (BC09)
+(14) Chen, H.-W., Lanzetta, K.M., Webb, J.K., & Barcons, X. 2001, ApJ, 559, 654
+(15) NED/SDSS
+(16) NED/2MASS
+(17) David Law, personal communication
+(18) Kacprzak, G.G., Muzahid, S., Churchill, C.W., et al. 2015, ApJ, 815, 22
