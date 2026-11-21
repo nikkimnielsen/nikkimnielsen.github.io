@@ -3523,7 +3523,6 @@ body[data-not-sent] > #vis-container ~ #not-sent {
   .info-row{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;}
   .info-col{flex:1;min-width:120px;}
   .kval{font-size:17px;font-weight:500;color:var(--text-primary);}
-  /* No text-transform here — let the HTML render case as-is */
   .klabel{font-size:10px;color:var(--text-secondary);letter-spacing:.04em;}
 </style>
 
@@ -3596,7 +3595,6 @@ const gridCol = isDark?'rgba(255,255,255,0.07)':'rgba(0,0,0,0.07)';
 const bgSurf  = isDark?'#1e1e1c':'#f4f3ef';
 
 const panelSED = ['E','Im'];
-
 const SED_COL = {
   E:   {solid:'#E24B4A', dash:isDark?'rgba(226,75,74,0.40)':'rgba(226,75,74,0.35)'},
   Sbc: {solid:'#9085e9', dash:isDark?'rgba(144,133,233,0.40)':'rgba(144,133,233,0.35)'},
@@ -3645,18 +3643,15 @@ for(const key of ['E','Sbc','Scd','Im']){
     for(let l=lMin;l<=lMax;l+=STEP){const f=interpSED(sed,l/(1+z));if(f>pk)pk=f;}
   GLOBAL_PEAK[key]=pk||1;
 }
-
 function filterSDSS_g(lA){const c=4770,w=680;return Math.max(0,Math.exp(-Math.pow((lA-c)/w,2)*2));}
 function filterSDSS_r(lA){const c=6220,w=750;return Math.max(0,Math.exp(-Math.pow((lA-c)/w,2)*2));}
 function filterB(lA){const c=4400,w=490;return Math.max(0,Math.exp(-Math.pow((lA-c)/w,2)*2));}
 function filterR(lA){const c=6500,w=900;return Math.max(0,Math.exp(-Math.pow((lA-c)/w,2)*2));}
-
 function interpKC(table,z){
   if(z<=0)return table[0];if(z>=Z_MAX)return table[table.length-1];
   const i=Math.min(Math.floor(z/0.01),table.length-2);
   return table[i]+(z-KC.z[i])/0.01*(table[i+1]-table[i]);
 }
-
 const OBS={
   z:[0.00,0.01,0.02,0.03,0.04,0.05,0.06,0.07,0.08,0.09,0.10,0.11,0.12,0.13,0.14,0.15,0.16,0.17,0.18,0.19,0.20,0.21,0.22,0.23,0.24,0.25,0.26,0.27,0.28,0.29,0.30,0.31,0.32,0.33,0.34,0.35,0.36,0.37,0.38,0.39,0.40,0.41,0.42,0.43,0.44,0.45,0.46,0.47,0.48,0.49,0.50,0.51,0.52,0.53,0.54,0.55,0.56,0.57,0.58,0.59,0.60,0.61,0.62,0.63,0.64,0.65,0.66,0.67,0.68,0.69,0.70,0.71,0.72,0.73,0.74,0.75,0.76,0.77,0.78,0.79,0.80,0.81,0.82,0.83,0.84,0.85,0.86,0.87,0.88,0.89,0.90,0.91,0.92,0.93,0.94,0.95,0.96,0.97,0.98,0.99,1.00,1.01,1.02,1.03,1.04,1.05,1.06,1.07,1.08,1.09,1.10,1.11,1.12,1.13,1.14,1.15,1.16,1.17,1.18,1.19,1.20,1.21],
   E:[0.80,0.82,0.84,0.86,0.87,0.89,0.92,0.94,0.96,0.99,1.01,1.04,1.07,1.11,1.14,1.18,1.22,1.26,1.30,1.34,1.38,1.42,1.45,1.48,1.52,1.54,1.57,1.60,1.62,1.65,1.69,1.72,1.75,1.78,1.81,1.82,1.83,1.83,1.82,1.82,1.80,1.79,1.78,1.77,1.76,1.76,1.75,1.74,1.72,1.71,1.70,1.69,1.68,1.67,1.67,1.66,1.66,1.66,1.66,1.67,1.67,1.68,1.69,1.70,1.71,1.72,1.73,1.74,1.76,1.77,1.80,1.82,1.85,1.88,1.92,1.96,2.00,2.03,2.07,2.11,2.14,2.17,2.20,2.22,2.25,2.27,2.29,2.32,2.34,2.36,2.38,2.40,2.41,2.43,2.43,2.44,2.45,2.45,2.45,2.45,2.44,2.43,2.42,2.40,2.38,2.36,2.33,2.30,2.27,2.23,2.19,2.15,2.11,2.07,2.03,1.99,1.95,1.91,1.88,1.84,1.80,1.76],
@@ -3664,7 +3659,6 @@ const OBS={
   Scd:[0.38,0.38,0.39,0.40,0.41,0.41,0.43,0.44,0.46,0.47,0.49,0.51,0.53,0.55,0.57,0.59,0.61,0.63,0.65,0.67,0.69,0.71,0.73,0.75,0.77,0.79,0.81,0.83,0.85,0.87,0.89,0.91,0.93,0.95,0.96,0.97,0.98,0.99,1.00,1.01,1.02,1.03,1.04,1.04,1.05,1.05,1.05,1.05,1.05,1.04,1.04,1.03,1.02,1.02,1.01,1.00,0.99,0.98,0.98,0.97,0.95,0.94,0.93,0.92,0.90,0.89,0.88,0.86,0.85,0.83,0.82,0.81,0.79,0.78,0.77,0.76,0.74,0.73,0.72,0.70,0.69,0.68,0.66,0.65,0.64,0.63,0.62,0.61,0.61,0.60,0.59,0.58,0.57,0.56,0.55,0.54,0.53,0.52,0.51,0.50,0.49,0.48,0.48,0.47,0.46,0.45,0.44,0.43,0.42,0.41,0.40,0.39,0.38,0.37,0.36,0.35,0.34,0.33,0.32,0.31,0.30,0.29],
   Im:[0.17,0.17,0.17,0.17,0.17,0.17,0.19,0.20,0.22,0.24,0.26,0.28,0.31,0.33,0.35,0.37,0.39,0.40,0.42,0.44,0.45,0.47,0.49,0.50,0.52,0.53,0.55,0.57,0.58,0.60,0.61,0.63,0.64,0.65,0.66,0.65,0.65,0.65,0.65,0.65,0.66,0.67,0.68,0.70,0.71,0.72,0.72,0.72,0.72,0.72,0.72,0.72,0.72,0.71,0.70,0.70,0.69,0.68,0.67,0.66,0.64,0.63,0.62,0.61,0.59,0.58,0.56,0.55,0.53,0.52,0.50,0.49,0.47,0.46,0.44,0.43,0.41,0.40,0.38,0.36,0.34,0.32,0.30,0.28,0.26,0.25,0.24,0.24,0.23,0.23,0.22,0.22,0.21,0.21,0.20,0.19,0.19,0.18,0.18,0.17,0.17,0.17,0.16,0.16,0.15,0.15,0.15,0.15,0.14,0.14,0.14,0.14,0.13,0.13,0.13,0.13,0.13,0.13,0.12,0.12,0.12,0.12]
 };
-
 function interpObs(type,z){
   const arr=OBS[type],zArr=OBS.z;
   if(z<=0)return arr[0];if(z>=Z_MAX)return arr[arr.length-1];
@@ -3711,13 +3705,13 @@ function drawSpec(panelIdx,z){
   shadeStroke(filterR,'rgba(185,55,35,0.45)',[4,3]);
   shadeStroke(filterSDSS_g,'rgba(50,150,50,0.65)',[]);
   shadeStroke(filterSDSS_r,'rgba(190,55,35,0.6)',[]);
-  // Filter labels
+  // Filter labels inside top of plot
   ctx.font='10px sans-serif';ctx.textAlign='center';
   ctx.fillStyle='rgba(45,135,45,0.85)';ctx.fillText('SDSS g',toX(4770),pad.t+10);
   ctx.fillStyle='rgba(175,50,30,0.85)';ctx.fillText('SDSS r',toX(6220),pad.t+10);
   ctx.fillStyle='rgba(45,120,45,0.6)'; ctx.fillText('B',toX(4400),pad.t+20);
   ctx.fillStyle='rgba(165,45,25,0.55)';ctx.fillText('R',toX(6500),pad.t+20);
-  // Lyman break — shaded region + line, NO text label
+  // Lyman break — shaded region + line only, no label
   const lymanObs=912*(1+z);
   if(lymanObs>lMin&&lymanObs<lMax){
     ctx.fillStyle=isDark?'rgba(100,100,200,0.10)':'rgba(100,100,200,0.07)';
@@ -3727,22 +3721,7 @@ function drawSpec(panelIdx,z){
     ctx.beginPath();ctx.moveTo(toX(lymanObs),pad.t);ctx.lineTo(toX(lymanObs),pad.t+ph);ctx.stroke();
     ctx.setLineDash([]);
   }
-  // 4000Å break — dashed line only, NO label
-  const lBreak=4000*(1+z);
-  if(lBreak>=lMin&&lBreak<=lMax){
-    ctx.strokeStyle=isDark?'rgba(255,210,60,0.55)':'rgba(170,110,0,0.5)';
-    ctx.lineWidth=1;ctx.setLineDash([3,3]);
-    ctx.beginPath();ctx.moveTo(toX(lBreak),pad.t);ctx.lineTo(toX(lBreak),pad.t+ph);ctx.stroke();
-    ctx.setLineDash([]);
-  }
-  // Hα — dashed line only, NO label
-  const haObs=6563*(1+z);
-  if(haObs>=lMin&&haObs<=lMax){
-    ctx.strokeStyle=isDark?'rgba(255,100,100,0.45)':'rgba(160,30,30,0.35)';
-    ctx.lineWidth=1;ctx.setLineDash([2,4]);
-    ctx.beginPath();ctx.moveTo(toX(haObs),pad.t);ctx.lineTo(toX(haObs),pad.t+ph);ctx.stroke();
-    ctx.setLineDash([]);
-  }
+  // NO 4000Å break line, NO Hα line
   // Rest-frame SED (dashed)
   ctx.strokeStyle=dashCol;ctx.lineWidth=1.8;ctx.setLineDash([6,4]);
   ctx.beginPath();let fr=true;
@@ -3863,14 +3842,10 @@ function drawColors(z){
 }
 
 function fmt(v){return(v>=0?'+':'')+v.toFixed(2)+' mag';}
-
-// Set label HTML using innerHTML so sub tags render, bypassing any CSS text-transform
-function setLabel(id, band, sedKey){
-  // band: 'gB' or 'rR'; use lowercase band letters
-  const sub = band==='gB' ? 'g→B' : 'r→R';
+function setLabel(id,band,sedKey){
+  const sub=band==='gB'?'g→B':'r→R';
   document.getElementById(id).innerHTML=`K<sub>${sub}</sub> ${sedKey}`;
 }
-
 function updateReadout(){
   const z=parseFloat(document.getElementById('zSlider').value);
   for(let p=0;p<2;p++){
@@ -3881,7 +3856,6 @@ function updateReadout(){
     document.getElementById(`krr${p}`).textContent=fmt(interpKC(KC.rR[key],z));
   }
 }
-
 function update(){
   const z=parseFloat(document.getElementById('zSlider').value);
   document.getElementById('zDisplay').textContent=z.toFixed(2);
@@ -3891,7 +3865,6 @@ function update(){
   drawColors(z);
   updateReadout();
 }
-
 document.querySelectorAll('.sed-btn').forEach(btn=>{
   btn.addEventListener('click',()=>{
     const p=parseInt(btn.dataset.panel),sed=btn.dataset.sed;
