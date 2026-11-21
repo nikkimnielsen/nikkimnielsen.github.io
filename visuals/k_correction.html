@@ -3497,7 +3497,6 @@ body[data-not-sent] > #vis-container ~ #not-sent {
 <style>
   :root{--e-col:#E24B4A;--scd-col:#2a78d6;--im-col:#eda100;--sbc-col:#9085e9;--fig-width:900px;}
   h2.sr-only{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0,0,0,0);}
-  body-wrap{display:flex;justify-content:center;}
   .fig{width:100%;max-width:var(--fig-width);margin:0 auto;}
   .container{padding:.75rem 0;}
   .controls{display:flex;align-items:center;gap:14px;margin:0 0 .75rem;flex-wrap:wrap;}
@@ -3556,9 +3555,6 @@ body[data-not-sent] > #vis-container ~ #not-sent {
     <div class="info-col"><div class="klabel">K<sub>r→R</sub> Elliptical</div><div class="kval" id="krrE">—</div></div>
     <div class="info-col"><div class="klabel">K<sub>g→B</sub> Scd</div><div class="kval" id="kgbScd">—</div></div>
     <div class="info-col"><div class="klabel">K<sub>r→R</sub> Scd</div><div class="kval" id="krrScd">—</div></div>
-  </div>
-  <div style="margin-top:7px;font-size:11px;color:var(--text-secondary);">
-    K = −2.5 log₁₀[ ∫f(λ/(1+z)) T<sub>obs</sub>(λ) dλ / ∫f(λ) T<sub>rest</sub>(λ) dλ ] + 2.5 log₁₀(1+z)
   </div>
 </div>
 </div>
@@ -3642,40 +3638,34 @@ function interpObs(type,z){
   return arr[i]+(z-zArr[i])/0.01*(arr[i+1]-arr[i]);
 }
 
-// Key change: canvas width comes from the .fig container, not the full viewport
 function figWidth(){
   const fig=document.querySelector('.fig');
-  return fig ? fig.getBoundingClientRect().width : 900;
+  return fig?fig.getBoundingClientRect().width:900;
 }
 
-function drawSpec(canvasId, sedKey, label, z){
-  const sed=CWW[sedKey], pk=GLOBAL_PEAK[sedKey];
-  const solidCol=COL[sedKey].solid, dashCol=COL[sedKey].dash;
+function drawSpec(canvasId,sedKey,label,z){
+  const sed=CWW[sedKey],pk=GLOBAL_PEAK[sedKey];
+  const solidCol=COL[sedKey].solid,dashCol=COL[sedKey].dash;
   const canvas=document.getElementById(canvasId);
   if(!canvas)return;
   const dpr=window.devicePixelRatio||1;
-  // Use half the fig width minus half the gap (5px) for each panel
-  const W=Math.round((figWidth()-10)/2), H=230;
-  canvas.style.width=W+'px'; canvas.style.height=H+'px';
-  canvas.width=Math.round(W*dpr); canvas.height=H*dpr;
+  const W=Math.round((figWidth()-10)/2),H=230;
+  canvas.style.width=W+'px';canvas.style.height=H+'px';
+  canvas.width=Math.round(W*dpr);canvas.height=H*dpr;
   const ctx=canvas.getContext('2d');
   ctx.scale(dpr,dpr);
 
   const pad={l:46,r:12,t:46,b:42};
-  const pw=W-pad.l-pad.r, ph=H-pad.t-pad.b;
+  const pw=W-pad.l-pad.r,ph=H-pad.t-pad.b;
 
   ctx.fillStyle=bgSurf;
   ctx.beginPath();ctx.roundRect(0,0,W,H,8);ctx.fill();
 
-  ctx.font='bold 11px sans-serif';
-  ctx.textAlign='center'; ctx.fillStyle=solidCol;
-  ctx.fillText(label, pad.l+pw/2, 13);
+  ctx.font='bold 11px sans-serif';ctx.textAlign='center';ctx.fillStyle=solidCol;
+  ctx.fillText(label,pad.l+pw/2,13);
 
-  ctx.strokeStyle=gridCol; ctx.lineWidth=0.8;
-  for(let i=0;i<=4;i++){
-    const y=pad.t+ph*i/4;
-    ctx.beginPath();ctx.moveTo(pad.l,y);ctx.lineTo(pad.l+pw,y);ctx.stroke();
-  }
+  ctx.strokeStyle=gridCol;ctx.lineWidth=0.8;
+  for(let i=0;i<=4;i++){const y=pad.t+ph*i/4;ctx.beginPath();ctx.moveTo(pad.l,y);ctx.lineTo(pad.l+pw,y);ctx.stroke();}
 
   const toX=l=>pad.l+((l-lMin)/(lMax-lMin))*pw;
   const toY=f=>pad.t+ph*(1-Math.min(Math.max(f/pk,0),1.05));
@@ -3710,7 +3700,7 @@ function drawSpec(canvasId, sedKey, label, z){
   ctx.fillStyle='rgba(165,45,25,0.55)';ctx.fillText('R',toX(6500),pad.t+20);
 
   const lymanObs=912*(1+z);
-  if(lymanObs>lMin && lymanObs<lMax){
+  if(lymanObs>lMin&&lymanObs<lMax){
     ctx.fillStyle=isDark?'rgba(100,100,200,0.10)':'rgba(100,100,200,0.07)';
     ctx.fillRect(pad.l,pad.t,toX(lymanObs)-pad.l,ph);
     ctx.strokeStyle=isDark?'rgba(130,130,230,0.6)':'rgba(80,80,190,0.55)';
@@ -3723,7 +3713,7 @@ function drawSpec(canvasId, sedKey, label, z){
   }
 
   const lBreak=4000*(1+z);
-  if(lBreak>=lMin && lBreak<=lMax){
+  if(lBreak>=lMin&&lBreak<=lMax){
     ctx.strokeStyle=isDark?'rgba(255,210,60,0.55)':'rgba(170,110,0,0.5)';
     ctx.lineWidth=1;ctx.setLineDash([3,3]);
     ctx.beginPath();ctx.moveTo(toX(lBreak),pad.t);ctx.lineTo(toX(lBreak),pad.t+ph);ctx.stroke();
@@ -3731,11 +3721,11 @@ function drawSpec(canvasId, sedKey, label, z){
     ctx.font='9px sans-serif';ctx.textAlign='center';
     ctx.fillStyle=isDark?'rgba(255,210,60,0.9)':'rgba(140,90,0,0.9)';
     ctx.fillText(`4000×(1+z) = ${Math.round(lBreak)} Å`,
-      Math.min(Math.max(toX(lBreak),pad.l+42),pad.l+pw-42), pad.t-6);
+      Math.min(Math.max(toX(lBreak),pad.l+42),pad.l+pw-42),pad.t-6);
   }
 
   const haObs=6563*(1+z);
-  if(haObs>=lMin && haObs<=lMax){
+  if(haObs>=lMin&&haObs<=lMax){
     ctx.strokeStyle=isDark?'rgba(255,100,100,0.45)':'rgba(160,30,30,0.35)';
     ctx.lineWidth=1;ctx.setLineDash([2,4]);
     ctx.beginPath();ctx.moveTo(toX(haObs),pad.t);ctx.lineTo(toX(haObs),pad.t+ph);ctx.stroke();
@@ -3779,16 +3769,16 @@ function drawColors(z){
   const canvas=document.getElementById('colorPlot');
   if(!canvas)return;
   const dpr=window.devicePixelRatio||1;
-  const W=figWidth(), H=250;
-  canvas.style.width=W+'px'; canvas.style.height=H+'px';
-  canvas.width=Math.round(W*dpr); canvas.height=H*dpr;
+  const W=figWidth(),H=250;
+  canvas.style.width=W+'px';canvas.style.height=H+'px';
+  canvas.width=Math.round(W*dpr);canvas.height=H*dpr;
   const ctx=canvas.getContext('2d');
   ctx.scale(dpr,dpr);
   ctx.fillStyle=bgSurf;
   ctx.beginPath();ctx.roundRect(0,0,W,H,8);ctx.fill();
 
   const pad={l:52,r:40,t:14,b:46};
-  const pw=W-pad.l-pad.r, ph=H-pad.t-pad.b;
+  const pw=W-pad.l-pad.r,ph=H-pad.t-pad.b;
   const cMin=-0.1,cMax=2.6;
   const toX=z=>pad.l+(z/Z_MAX)*pw;
   const toY=c=>pad.t+ph*((cMax-c)/(cMax-cMin));
@@ -3832,9 +3822,7 @@ function drawColors(z){
   }
 
   ctx.fillStyle=textSec;ctx.font='10px sans-serif';ctx.textAlign='center';
-  for(let zt=0;zt<=Z_MAX+0.001;zt+=0.2){
-    ctx.fillText(zt.toFixed(1),toX(zt),pad.t+ph+14);
-  }
+  for(let zt=0;zt<=Z_MAX+0.001;zt+=0.2)ctx.fillText(zt.toFixed(1),toX(zt),pad.t+ph+14);
   ctx.fillText('Redshift z',pad.l+pw/2,pad.t+ph+30);
   ctx.textAlign='right';
   for(const c of [0,0.5,1.0,1.5,2.0,2.5])ctx.fillText(c.toFixed(1),pad.l-5,toY(c)+4);
