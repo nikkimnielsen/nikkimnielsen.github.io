@@ -3503,19 +3503,23 @@ body[data-not-sent] > #vis-container ~ #not-sent {
   .controls label{font-size:13px;color:var(--text-secondary);display:flex;align-items:center;gap:8px;}
   .controls input[type=range]{width:200px;}
   .z-val{font-size:14px;font-weight:500;color:var(--text-primary);min-width:40px;}
-  .btn{background:transparent;border:.5px solid var(--border-strong);border-radius:var(--radius);padding:5px 13px;font-size:13px;cursor:pointer;color:var(--text-primary);transition:background .15s;}
-  .btn:hover{background:var(--surface-1);}
-  .btn.active{background:var(--bg-accent);border-color:var(--border-accent);color:var(--text-accent);}
+  .zbtn{background:transparent;border:.5px solid var(--border-strong);border-radius:var(--radius);padding:5px 13px;font-size:13px;cursor:pointer;color:var(--text-primary);transition:background .15s;}
+  .zbtn:hover{background:var(--surface-1);}
+  .zbtn.active{background:var(--bg-accent);border-color:var(--border-accent);color:var(--text-accent);}
   .two-panels{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:10px;}
   @media(max-width:560px){.two-panels{grid-template-columns:1fr;}}
   .spec-wrap{display:flex;flex-direction:column;gap:4px;}
   .sed-selector{display:flex;gap:5px;justify-content:center;}
-  .sed-btn{background:transparent;border:.5px solid var(--border);border-radius:20px;padding:3px 10px;font-size:11px;cursor:pointer;color:var(--text-secondary);transition:all .15s;font-weight:500;}
-  .sed-btn:hover{border-color:var(--border-strong);color:var(--text-primary);}
-  .sed-btn.active-E  {background:#E24B4A22;border-color:#E24B4A;color:#E24B4A;}
-  .sed-btn.active-Sbc{background:#9085e922;border-color:#9085e9;color:#9085e9;}
-  .sed-btn.active-Scd{background:#2a78d622;border-color:#2a78d6;color:#2a78d6;}
-  .sed-btn.active-Im {background:#eda10022;border-color:#eda100;color:#eda100;}
+  /* Base unselected style — deliberately neutral */
+  .sed-btn{
+    border-radius:20px;
+    padding:3px 10px;
+    font-size:11px;
+    font-weight:600;
+    cursor:pointer;
+    transition:opacity .15s;
+    /* colour set via inline style JS */
+  }
   .legend{display:flex;flex-wrap:wrap;gap:10px;font-size:11px;color:var(--text-secondary);margin-top:6px;margin-bottom:12px;}
   .leg-item{display:flex;align-items:center;gap:4px;}
   .leg-box{width:12px;height:10px;border-radius:2px;display:inline-block;}
@@ -3528,21 +3532,21 @@ body[data-not-sent] > #vis-container ~ #not-sent {
 
 <div class="fig">
 <div class="container">
-<h2 class="sr-only">K-correction animation — selectable SED types</h2>
+<h2 class="sr-only">K-correction animation</h2>
 
 <div class="controls">
   <label>Redshift z =
     <input type="range" id="zSlider" min="0" max="1.21" step="0.01" value="0.3">
     <span class="z-val" id="zDisplay">0.30</span>
   </label>
-  <button class="btn" id="playBtn">▶ Animate</button>
-  <button class="btn" id="resetBtn">↺ Reset</button>
+  <button class="zbtn" id="playBtn">▶ Animate</button>
+  <button class="zbtn" id="resetBtn">↺ Reset</button>
 </div>
 
 <div class="two-panels">
   <div class="spec-wrap">
     <div class="sed-selector" id="sel0">
-      <button class="sed-btn active-E" data-panel="0" data-sed="E">E</button>
+      <button class="sed-btn" data-panel="0" data-sed="E">E</button>
       <button class="sed-btn" data-panel="0" data-sed="Sbc">Sbc</button>
       <button class="sed-btn" data-panel="0" data-sed="Scd">Scd</button>
       <button class="sed-btn" data-panel="0" data-sed="Im">Im</button>
@@ -3554,7 +3558,7 @@ body[data-not-sent] > #vis-container ~ #not-sent {
       <button class="sed-btn" data-panel="1" data-sed="E">E</button>
       <button class="sed-btn" data-panel="1" data-sed="Sbc">Sbc</button>
       <button class="sed-btn" data-panel="1" data-sed="Scd">Scd</button>
-      <button class="sed-btn active-Im" data-panel="1" data-sed="Im">Im</button>
+      <button class="sed-btn" data-panel="1" data-sed="Im">Im</button>
     </div>
     <canvas id="spec1" height="230"></canvas>
   </div>
@@ -3595,13 +3599,30 @@ const gridCol = isDark?'rgba(255,255,255,0.07)':'rgba(0,0,0,0.07)';
 const bgSurf  = isDark?'#1e1e1c':'#f4f3ef';
 
 const panelSED = ['E','Im'];
+
+const SED_HEX = {E:'#c02828', Sbc:'#d47000', Scd:'#2a9d2a', Im:'#1a6fcc'};
 const SED_COL = {
-  E:   {solid:'#E24B4A', dash:isDark?'rgba(226,75,74,0.40)':'rgba(226,75,74,0.35)'},
-  Sbc: {solid:'#9085e9', dash:isDark?'rgba(144,133,233,0.40)':'rgba(144,133,233,0.35)'},
-  Scd: {solid:'#2a78d6', dash:isDark?'rgba(42,120,214,0.40)':'rgba(42,120,214,0.35)'},
-  Im:  {solid:'#eda100', dash:isDark?'rgba(237,161,0,0.40)':'rgba(237,161,0,0.35)'},
+  E:   {solid:'#c02828', dash:isDark?'rgba(192,40,40,0.40)':'rgba(192,40,40,0.35)'},
+  Sbc: {solid:'#d47000', dash:isDark?'rgba(212,112,0,0.40)':'rgba(212,112,0,0.35)'},
+  Scd: {solid:'#2a9d2a', dash:isDark?'rgba(42,157,42,0.40)':'rgba(42,157,42,0.35)'},
+  Im:  {solid:'#1a6fcc', dash:isDark?'rgba(26,111,204,0.40)':'rgba(26,111,204,0.35)'},
 };
-const SED_LABEL = {E:'Elliptical (E)', Sbc:'Sbc', Scd:'Star-forming (Scd)', Im:'Irregular (Im)'};
+const SED_LABEL = {E:'Elliptical (E)', Sbc:'Spiral (Sbc)', Scd:'Star-forming (Scd)', Im:'Irregular (Im)'};
+
+// Apply inline styles to all sed buttons
+function styleButtons() {
+  document.querySelectorAll('.sed-btn').forEach(btn => {
+    const sed = btn.dataset.sed;
+    const p = parseInt(btn.dataset.panel);
+    const isActive = (panelSED[p] === sed);
+    const hex = SED_HEX[sed];
+    if (isActive) {
+      btn.style.cssText = `background:${hex};border:1.5px solid ${hex};color:#ffffff;border-radius:20px;padding:3px 10px;font-size:11px;font-weight:600;cursor:pointer;`;
+    } else {
+      btn.style.cssText = `background:transparent;border:1.5px solid ${hex};color:${hex};border-radius:20px;padding:3px 10px;font-size:11px;font-weight:600;cursor:pointer;opacity:0.55;`;
+    }
+  });
+}
 
 const KC={
   z:[0.0,0.01,0.02,0.03,0.04,0.05,0.06,0.07,0.08,0.09,0.1,0.11,0.12,0.13,0.14,0.15,0.16,0.17,0.18,0.19,0.2,0.21,0.22,0.23,0.24,0.25,0.26,0.27,0.28,0.29,0.3,0.31,0.32,0.33,0.34,0.35,0.36,0.37,0.38,0.39,0.4,0.41,0.42,0.43,0.44,0.45,0.46,0.47,0.48,0.49,0.5,0.51,0.52,0.53,0.54,0.55,0.56,0.57,0.58,0.59,0.6,0.61,0.62,0.63,0.64,0.65,0.66,0.67,0.68,0.69,0.7,0.71,0.72,0.73,0.74,0.75,0.76,0.77,0.78,0.79,0.8,0.81,0.82,0.83,0.84,0.85,0.86,0.87,0.88,0.89,0.9,0.91,0.92,0.93,0.94,0.95,0.96,0.97,0.98,0.99,1.0,1.01,1.02,1.03,1.04,1.05,1.06,1.07,1.08,1.09,1.1,1.11,1.12,1.13,1.14,1.15,1.16,1.17,1.18,1.19,1.2,1.21],
@@ -3679,10 +3700,8 @@ function drawSpec(panelIdx,z){
   const pad={l:46,r:12,t:30,b:42};
   const pw=W-pad.l-pad.r,ph=H-pad.t-pad.b;
   ctx.fillStyle=bgSurf;ctx.beginPath();ctx.roundRect(0,0,W,H,8);ctx.fill();
-  // Panel title
   ctx.font='bold 11px sans-serif';ctx.textAlign='center';ctx.fillStyle=solidCol;
   ctx.fillText(SED_LABEL[sedKey],pad.l+pw/2,15);
-  // Grid
   ctx.strokeStyle=gridCol;ctx.lineWidth=0.8;
   for(let i=0;i<=4;i++){const y=pad.t+ph*i/4;ctx.beginPath();ctx.moveTo(pad.l,y);ctx.lineTo(pad.l+pw,y);ctx.stroke();}
   const toX=l=>pad.l+((l-lMin)/(lMax-lMin))*pw;
@@ -3705,13 +3724,11 @@ function drawSpec(panelIdx,z){
   shadeStroke(filterR,'rgba(185,55,35,0.45)',[4,3]);
   shadeStroke(filterSDSS_g,'rgba(50,150,50,0.65)',[]);
   shadeStroke(filterSDSS_r,'rgba(190,55,35,0.6)',[]);
-  // Filter labels inside top of plot
   ctx.font='10px sans-serif';ctx.textAlign='center';
   ctx.fillStyle='rgba(45,135,45,0.85)';ctx.fillText('SDSS g',toX(4770),pad.t+10);
   ctx.fillStyle='rgba(175,50,30,0.85)';ctx.fillText('SDSS r',toX(6220),pad.t+10);
   ctx.fillStyle='rgba(45,120,45,0.6)'; ctx.fillText('B',toX(4400),pad.t+20);
   ctx.fillStyle='rgba(165,45,25,0.55)';ctx.fillText('R',toX(6500),pad.t+20);
-  // Lyman break — shaded region + line only, no label
   const lymanObs=912*(1+z);
   if(lymanObs>lMin&&lymanObs<lMax){
     ctx.fillStyle=isDark?'rgba(100,100,200,0.10)':'rgba(100,100,200,0.07)';
@@ -3721,18 +3738,14 @@ function drawSpec(panelIdx,z){
     ctx.beginPath();ctx.moveTo(toX(lymanObs),pad.t);ctx.lineTo(toX(lymanObs),pad.t+ph);ctx.stroke();
     ctx.setLineDash([]);
   }
-  // NO 4000Å break line, NO Hα line
-  // Rest-frame SED (dashed)
   ctx.strokeStyle=dashCol;ctx.lineWidth=1.8;ctx.setLineDash([6,4]);
   ctx.beginPath();let fr=true;
   for(let l=lMin;l<=lMax;l+=STEP){const pt=[toX(l),toY(interpSED(sed,l))];if(fr){ctx.moveTo(...pt);fr=false;}else ctx.lineTo(...pt);}
   ctx.stroke();ctx.setLineDash([]);
-  // Redshifted SED (solid)
   ctx.strokeStyle=solidCol;ctx.lineWidth=2.2;
   ctx.beginPath();let fo=true;
   for(let l=lMin;l<=lMax;l+=STEP){const pt=[toX(l),toY(interpSED(sed,l/(1+z)))];if(fo){ctx.moveTo(...pt);fo=false;}else ctx.lineTo(...pt);}
   ctx.stroke();
-  // X-axis
   const xTicks=[3000,4000,5000,6000,7000,8000,9000,10000];
   xTicks.forEach((lt,i)=>{
     const x=toX(lt);
@@ -3771,7 +3784,7 @@ function drawKcorr(canvasId,band,title,z){
     ctx.strokeStyle=isDark?'rgba(255,255,255,0.2)':'rgba(0,0,0,0.18)';ctx.lineWidth=1;
     ctx.beginPath();ctx.moveTo(pad.l,toY(0));ctx.lineTo(pad.l+pw,toY(0));ctx.stroke();
   }
-  const tracks=[{key:'E',col:'#E24B4A'},{key:'Sbc',col:'#9085e9'},{key:'Scd',col:'#2a78d6'},{key:'Im',col:'#eda100'}];
+  const tracks=[{key:'E',col:'#c02828'},{key:'Sbc',col:'#d47000'},{key:'Scd',col:'#2a9d2a'},{key:'Im',col:'#1a6fcc'}];
   for(const {key,col} of tracks){
     ctx.strokeStyle=col;ctx.lineWidth=1.8;ctx.setLineDash([]);
     ctx.beginPath();let first=true;
@@ -3815,7 +3828,7 @@ function drawColors(z){
   ctx.strokeStyle=gridCol;ctx.lineWidth=0.8;
   for(let c=0;c<=2.5;c+=0.5){ctx.beginPath();ctx.moveTo(pad.l,toY(c));ctx.lineTo(pad.l+pw,toY(c));ctx.stroke();}
   for(let zi=0;zi<=Z_MAX+0.001;zi+=0.2){ctx.beginPath();ctx.moveTo(toX(zi),pad.t);ctx.lineTo(toX(zi),pad.t+ph);ctx.stroke();}
-  const tracks=[{key:'E',col:'#E24B4A'},{key:'Sbc',col:'#9085e9'},{key:'Scd',col:'#2a78d6'},{key:'Im',col:'#eda100'}];
+  const tracks=[{key:'E',col:'#c02828'},{key:'Sbc',col:'#d47000'},{key:'Scd',col:'#2a9d2a'},{key:'Im',col:'#1a6fcc'}];
   for(const {key,col} of tracks){
     ctx.strokeStyle=col;ctx.lineWidth=2;ctx.setLineDash([]);
     ctx.beginPath();let first=true;
@@ -3864,13 +3877,13 @@ function update(){
   drawKcorr('kcorrRR','rR','K-correction: r → R',z);
   drawColors(z);
   updateReadout();
+  styleButtons();
 }
+
 document.querySelectorAll('.sed-btn').forEach(btn=>{
   btn.addEventListener('click',()=>{
     const p=parseInt(btn.dataset.panel),sed=btn.dataset.sed;
     panelSED[p]=sed;
-    document.querySelectorAll(`#sel${p} .sed-btn`).forEach(b=>b.className='sed-btn');
-    btn.classList.add(`active-${sed}`);
     update();
   });
 });
