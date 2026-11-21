@@ -3495,7 +3495,7 @@ body[data-not-sent] > #vis-container ~ #not-sent {
     </defs>
   </svg><div id="vis-container">
 <style>
-  :root{--e-col:#E24B4A;--scd-col:#2a78d6;--im-col:#eda100;--sbc-col:#9085e9;--fig-width:900px;}
+  :root{--fig-width:900px;}
   h2.sr-only{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0,0,0,0);}
   .fig{width:100%;max-width:var(--fig-width);margin:0 auto;}
   .container{padding:.75rem 0;}
@@ -3508,6 +3508,14 @@ body[data-not-sent] > #vis-container ~ #not-sent {
   .btn.active{background:var(--bg-accent);border-color:var(--border-accent);color:var(--text-accent);}
   .two-panels{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:10px;}
   @media(max-width:560px){.two-panels{grid-template-columns:1fr;}}
+  .spec-wrap{display:flex;flex-direction:column;gap:4px;}
+  .sed-selector{display:flex;gap:5px;justify-content:center;}
+  .sed-btn{background:transparent;border:.5px solid var(--border);border-radius:20px;padding:3px 10px;font-size:11px;cursor:pointer;color:var(--text-secondary);transition:all .15s;font-weight:500;}
+  .sed-btn:hover{border-color:var(--border-strong);color:var(--text-primary);}
+  .sed-btn.active-E  {background:#E24B4A22;border-color:#E24B4A;color:#E24B4A;}
+  .sed-btn.active-Sbc{background:#9085e922;border-color:#9085e9;color:#9085e9;}
+  .sed-btn.active-Scd{background:#2a78d622;border-color:#2a78d6;color:#2a78d6;}
+  .sed-btn.active-Im {background:#eda10022;border-color:#eda100;color:#eda100;}
   .legend{display:flex;flex-wrap:wrap;gap:10px;font-size:11px;color:var(--text-secondary);margin-top:6px;margin-bottom:12px;}
   .leg-item{display:flex;align-items:center;gap:4px;}
   .leg-box{width:12px;height:10px;border-radius:2px;display:inline-block;}
@@ -3515,12 +3523,13 @@ body[data-not-sent] > #vis-container ~ #not-sent {
   .info-row{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;}
   .info-col{flex:1;min-width:120px;}
   .kval{font-size:17px;font-weight:500;color:var(--text-primary);}
-  .klabel{font-size:10px;color:var(--text-secondary);text-transform:uppercase;letter-spacing:.04em;}
+  /* No text-transform here — let the HTML render case as-is */
+  .klabel{font-size:10px;color:var(--text-secondary);letter-spacing:.04em;}
 </style>
 
 <div class="fig">
 <div class="container">
-<h2 class="sr-only">K-correction animation using full UV–optical CWW galaxy templates</h2>
+<h2 class="sr-only">K-correction animation — selectable SED types</h2>
 
 <div class="controls">
   <label>Redshift z =
@@ -3532,13 +3541,28 @@ body[data-not-sent] > #vis-container ~ #not-sent {
 </div>
 
 <div class="two-panels">
-  <div><canvas id="specE" height="230"></canvas></div>
-  <div><canvas id="specScd" height="230"></canvas></div>
+  <div class="spec-wrap">
+    <div class="sed-selector" id="sel0">
+      <button class="sed-btn active-E" data-panel="0" data-sed="E">E</button>
+      <button class="sed-btn" data-panel="0" data-sed="Sbc">Sbc</button>
+      <button class="sed-btn" data-panel="0" data-sed="Scd">Scd</button>
+      <button class="sed-btn" data-panel="0" data-sed="Im">Im</button>
+    </div>
+    <canvas id="spec0" height="230"></canvas>
+  </div>
+  <div class="spec-wrap">
+    <div class="sed-selector" id="sel1">
+      <button class="sed-btn" data-panel="1" data-sed="E">E</button>
+      <button class="sed-btn" data-panel="1" data-sed="Sbc">Sbc</button>
+      <button class="sed-btn" data-panel="1" data-sed="Scd">Scd</button>
+      <button class="sed-btn active-Im" data-panel="1" data-sed="Im">Im</button>
+    </div>
+    <canvas id="spec1" height="230"></canvas>
+  </div>
 </div>
 
 <div class="legend">
-  <span class="leg-item"><span style="display:inline-block;width:16px;height:2px;background:#E24B4A;border-radius:2px;vertical-align:middle;"></span>&nbsp;<span style="display:inline-block;width:16px;height:0;border-top:2px dashed #E24B4A;vertical-align:middle;margin-left:3px;"></span>&nbsp;E: obs / rest</span>
-  <span class="leg-item"><span style="display:inline-block;width:16px;height:2px;background:#2a78d6;border-radius:2px;vertical-align:middle;"></span>&nbsp;<span style="display:inline-block;width:16px;height:0;border-top:2px dashed #2a78d6;vertical-align:middle;margin-left:3px;"></span>&nbsp;Scd: obs / rest</span>
+  <span class="leg-item"><span style="display:inline-block;width:16px;height:2px;background:currentColor;border-radius:2px;vertical-align:middle;opacity:.8;"></span>&nbsp;<span style="display:inline-block;width:16px;height:0;border-top:2px dashed currentColor;vertical-align:middle;margin-left:3px;opacity:.5;"></span>&nbsp;Obs / rest SED (colour = type)</span>
   <span class="leg-item"><span class="leg-box" style="background:rgba(70,170,70,0.25);border:1.5px solid rgba(70,160,70,0.6);"></span> SDSS g (obs)</span>
   <span class="leg-item"><span class="leg-box" style="background:rgba(210,70,50,0.2);border:1.5px solid rgba(200,65,45,0.55);"></span> SDSS r (obs)</span>
   <span class="leg-item"><span class="leg-box" style="background:rgba(70,170,70,0.08);border:1.5px dashed rgba(70,160,70,0.5);"></span> B-band (rest)</span>
@@ -3552,10 +3576,10 @@ body[data-not-sent] > #vis-container ~ #not-sent {
 
 <div class="info-box">
   <div class="info-row">
-    <div class="info-col"><div class="klabel">K<sub>g→B</sub> Elliptical</div><div class="kval" id="kgbE">—</div></div>
-    <div class="info-col"><div class="klabel">K<sub>r→R</sub> Elliptical</div><div class="kval" id="krrE">—</div></div>
-    <div class="info-col"><div class="klabel">K<sub>g→B</sub> Scd</div><div class="kval" id="kgbScd">—</div></div>
-    <div class="info-col"><div class="klabel">K<sub>r→R</sub> Scd</div><div class="kval" id="krrScd">—</div></div>
+    <div class="info-col"><div class="klabel" id="lbl_kgb0"></div><div class="kval" id="kgb0">—</div></div>
+    <div class="info-col"><div class="klabel" id="lbl_krr0"></div><div class="kval" id="krr0">—</div></div>
+    <div class="info-col"><div class="klabel" id="lbl_kgb1"></div><div class="kval" id="kgb1">—</div></div>
+    <div class="info-col"><div class="klabel" id="lbl_krr1"></div><div class="kval" id="krr1">—</div></div>
   </div>
 </div>
 
@@ -3570,10 +3594,16 @@ const isDark = document.documentElement.dataset.mode==='dark' ||
 const textSec = isDark?'#9c9a92':'#52514e';
 const gridCol = isDark?'rgba(255,255,255,0.07)':'rgba(0,0,0,0.07)';
 const bgSurf  = isDark?'#1e1e1c':'#f4f3ef';
-const COL={
+
+const panelSED = ['E','Im'];
+
+const SED_COL = {
   E:   {solid:'#E24B4A', dash:isDark?'rgba(226,75,74,0.40)':'rgba(226,75,74,0.35)'},
+  Sbc: {solid:'#9085e9', dash:isDark?'rgba(144,133,233,0.40)':'rgba(144,133,233,0.35)'},
   Scd: {solid:'#2a78d6', dash:isDark?'rgba(42,120,214,0.40)':'rgba(42,120,214,0.35)'},
+  Im:  {solid:'#eda100', dash:isDark?'rgba(237,161,0,0.40)':'rgba(237,161,0,0.35)'},
 };
+const SED_LABEL = {E:'Elliptical (E)', Sbc:'Sbc', Scd:'Star-forming (Scd)', Im:'Irregular (Im)'};
 
 const KC={
   z:[0.0,0.01,0.02,0.03,0.04,0.05,0.06,0.07,0.08,0.09,0.1,0.11,0.12,0.13,0.14,0.15,0.16,0.17,0.18,0.19,0.2,0.21,0.22,0.23,0.24,0.25,0.26,0.27,0.28,0.29,0.3,0.31,0.32,0.33,0.34,0.35,0.36,0.37,0.38,0.39,0.4,0.41,0.42,0.43,0.44,0.45,0.46,0.47,0.48,0.49,0.5,0.51,0.52,0.53,0.54,0.55,0.56,0.57,0.58,0.59,0.6,0.61,0.62,0.63,0.64,0.65,0.66,0.67,0.68,0.69,0.7,0.71,0.72,0.73,0.74,0.75,0.76,0.77,0.78,0.79,0.8,0.81,0.82,0.83,0.84,0.85,0.86,0.87,0.88,0.89,0.9,0.91,0.92,0.93,0.94,0.95,0.96,0.97,0.98,0.99,1.0,1.01,1.02,1.03,1.04,1.05,1.06,1.07,1.08,1.09,1.1,1.11,1.12,1.13,1.14,1.15,1.16,1.17,1.18,1.19,1.2,1.21],
@@ -3593,7 +3623,9 @@ const KC={
 
 const CWW={
 E:{wav:[915,925,935,945,955,965,975,985,995,1005,1015,1025,1035,1045,1055,1065,1075,1085,1095,1105,1115,1125,1135,1145,1155,1165,1175,1185,1195,1205,1215,1225,1235,1245,1255,1265,1275,1285,1295,1305,1315,1325,1335,1345,1355,1365,1375,1385,1395,1405,1415,1425,1435,1442,1447,1455,1465,1475,1485,1500,1600,1700,1800,1900,2000,2100,2200,2300,2400,2500,2600,2700,2800,2900,2940,2980,3020,3060,3100,3140,3180,3220,3260,3300,3340,3380,3420,3460,3500,3540,3580,3620,3660,3700,3740,3780,3820,3860,3900,3940,3980,4020,4060,4100,4140,4180,4220,4260,4300,4340,4380,4420,4460,4500,4540,4580,4620,4660,4700,4740,4780,4820,4860,4900,4940,4980,5020,5060,5100,5140,5180,5220,5260,5300,5340,5380,5420,5460,5500,5540,5580,5620,5660,5700,5740,5780,5820,5860,5900,5940,5980,6020,6060,6100,6140,6180,6220,6260,6300,6340,6380,6420,6460,6500,6540,6580,6620,6660,6700,6740,6780,6820,6860,6900,6940,6980,7020,7060,7100,7140,7180,7220,7260,7300,7340,7380,7420,7460,7500,7540,7580,7620,7660,7700,7740,7780,7820,7860,7900,7940,8000,8100,8200,8300,8400,8500,8600,8700,8800,8900,9000,9100,9200,9300,9400,9500,9600,9700,9800,9900,10000,10025,10075,10125,10175],flux:[0.024587,0.032826,0.041219,0.048472,0.052789,0.054301,0.031073,0.044199,0.04284,0.049261,0.050028,0.039751,0.044352,0.054871,0.052592,0.045711,0.048538,0.042928,0.048494,0.045996,0.044506,0.039707,0.045229,0.043059,0.042687,0.041657,0.030788,0.03951,0.034623,0.02989,0.026778,0.034075,0.038151,0.038458,0.037209,0.035894,0.038458,0.038458,0.03322,0.03333,0.036924,0.035171,0.03241,0.035105,0.034053,0.031555,0.031314,0.030898,0.024477,0.023973,0.028553,0.027852,0.028443,0.028641,0.028487,0.027545,0.026055,0.026099,0.026121,0.02566,0.024906,0.024151,0.024151,0.02566,0.029434,0.032453,0.033962,0.030189,0.02566,0.02717,0.034717,0.057358,0.08,0.112453,0.124528,0.138868,0.14566,0.143396,0.153208,0.184906,0.221132,0.233208,0.227925,0.233962,0.234717,0.233962,0.241509,0.247547,0.258868,0.249811,0.242264,0.273208,0.310189,0.319245,0.301132,0.273208,0.24,0.243019,0.270189,0.309434,0.415849,0.516226,0.553208,0.544906,0.518491,0.525283,0.553208,0.554717,0.576604,0.633962,0.664906,0.699623,0.750189,0.781887,0.804528,0.834717,0.848302,0.839245,0.848302,0.886038,0.912453,0.906415,0.880755,0.881509,0.896604,0.867925,0.842264,0.846038,0.84,0.800755,0.78717,0.839245,0.888302,0.920755,0.947925,0.93283,0.909434,0.919245,0.927547,0.941887,0.947925,0.94566,0.950943,0.949434,0.948679,0.937358,0.925283,0.910189,0.914717,0.941887,0.970566,0.990943,1.0,0.999245,0.990189,0.97434,0.956226,0.9366,0.920755,0.916226,0.920755,0.929811,0.941887,0.953208,0.963774,0.971321,0.969057,0.954717,0.944906,0.942642,0.941887,0.944151,0.944906,0.944906,0.943396,0.944906,0.940377,0.93434,0.917736,0.881509,0.851321,0.855849,0.886038,0.916981,0.93434,0.94566,0.953208,0.956981,0.956226,0.948679,0.93434,0.916226,0.901887,0.892075,0.879245,0.864906,0.849811,0.836226,0.823396,0.816604,0.823396,0.858113,0.86566,0.877736,0.846038,0.795472,0.827925,0.861132,0.876226,0.855094,0.851321,0.877736,0.861132,0.830943,0.7917,0.809057,0.8083,0.799245,0.802264,0.818113,0.8634,0.821543,0.811518,0.822334,0.8131]},
-Scd:{wav:[915,925,935,945,955,965,975,985,995,1005,1015,1025,1035,1045,1055,1065,1075,1085,1095,1105,1115,1125,1135,1145,1155,1165,1175,1185,1195,1205,1215,1225,1235,1245,1255,1265,1275,1285,1295,1305,1315,1325,1335,1345,1355,1365,1375,1385,1395,1405,1415,1425,1435,1442,1447,1455,1465,1475,1485,1495,1505,1512,1517,1525,1535,1545,1555,1565,1575,1585,1595,1605,1615,1625,1635,1645,1655,1665,1672,1677,1685,1695,1705,1715,1725,1735,1745,1755,1765,1775,1785,1800,1900,2000,2100,2200,2300,2400,2500,2600,2700,2800,2900,2940,2980,3020,3060,3100,3140,3180,3220,3260,3300,3340,3380,3420,3460,3500,3540,3580,3620,3660,3700,3740,3780,3820,3860,3900,3940,3980,4020,4060,4100,4140,4180,4220,4260,4300,4340,4380,4420,4460,4500,4540,4580,4620,4660,4700,4740,4780,4820,4860,4900,4940,4980,5020,5060,5100,5140,5180,5220,5260,5300,5300,5340,5380,5420,5460,5500,5540,5580,5620,5660,5700,5740,5780,5820,5860,5900,5940,5980,6020,6060,6100,6140,6180,6220,6260,6300,6340,6380,6420,6460,6500,6540,6580,6620,6660,6700,6740,6780,6820,6860,6900,6940,6980,7020,7060,7100,7140,7180,7220,7260,7300,7340,7380,7420,7460,7500,7540,7580,7620,7660,7700,7740,7780,7820,7860,7900,7940,8000,8100,8200,8300,8400,8500,8600,8700,8800,8900,9000,9100,9200,9300,9400,9500,9600,9700,9800,9900,10000,10025,10075,10125,10175],flux:[0.216806,0.562268,0.927212,1.324261,1.591056,1.727595,0.520964,1.337973,1.317405,1.735023,1.728167,1.034044,1.382533,2.096652,2.003531,1.625334,1.827001,1.527642,1.857279,1.759016,1.690461,1.476226,1.798437,1.652756,1.688176,1.683035,1.123165,1.586486,1.233997,0.983198,0.744968,1.174582,1.547067,1.630476,1.556778,1.409384,1.680178,1.721882,1.408813,1.392816,1.652756,1.568205,1.417953,1.597341,1.539068,1.389389,1.417383,1.40767,1.134592,1.144875,1.280843,1.273416,1.281985,1.325405,1.333402,1.284842,1.187722,1.184294,1.193435,1.192864,1.122023,1.007193,1.061466,1.031759,0.885507,0.896362,0.859227,0.905502,0.960918,0.992911,1.000909,0.974058,0.963774,0.920927,0.968916,0.974058,0.914643,0.97063,0.87351,0.983198,0.999195,0.938066,0.900932,0.849515,0.835804,0.881508,0.858656,0.89579,0.832948,0.832377,0.844945,0.880365,0.843836,0.780822,0.712329,0.655708,0.613699,0.577169,0.547945,0.528767,0.520548,0.521461,0.528767,0.53242,0.536986,0.541553,0.546119,0.550685,0.555251,0.558904,0.561644,0.56347,0.56621,0.570776,0.576256,0.581735,0.587215,0.589954,0.599087,0.586301,0.568037,0.582648,0.73516,0.807306,0.70411,0.708676,0.76621,0.777169,0.758904,0.801826,0.884018,0.883105,0.834703,0.853881,0.890411,0.891324,0.87032,0.844749,0.853881,0.878539,0.891324,0.910502,0.917808,0.912329,0.918721,0.920548,0.916895,0.907763,0.900457,0.89589,0.90137,0.926941,0.896804,0.894977,1.0,0.980822,0.858447,0.829224,0.821918,0.809132,0.809132,0.807306,0.809132,0.785388,0.781735,0.817352,0.832877,0.808219,0.781735,0.778082,0.773516,0.774429,0.775342,0.772603,0.76895,0.765297,0.760731,0.755251,0.750685,0.746119,0.740639,0.736073,0.730594,0.726027,0.721461,0.716895,0.713242,0.708676,0.70411,0.699543,0.694977,0.691324,0.686758,0.682192,0.678539,0.673973,0.669406,0.665753,0.661187,0.656621,0.652968,0.648402,0.644749,0.641096,0.637443,0.63379,0.630137,0.625571,0.621918,0.618265,0.614612,0.610959,0.607306,0.603653,0.6,0.59726,0.593607,0.590868,0.587215,0.583562,0.579909,0.577169,0.573516,0.570776,0.567123,0.564384,0.560731,0.557991,0.554338,0.549772,0.542466,0.53516,0.526941,0.519635,0.512329,0.505023,0.497717,0.490411,0.484018,0.476712,0.47032,0.463014,0.456621,0.450228,0.443836,0.437443,0.431963,0.426484,0.421005,0.421005,0.416952,0.409679,0.416641,0.41155]}
+Sbc:{wav:[915.0,925.0,935.0,945.0,955.0,965.0,975.0,985.0,995.0,1005.0,1015.0,1025.0,1035.0,1045.0,1055.0,1065.0,1075.0,1085.0,1095.0,1105.0,1115.0,1125.0,1135.0,1145.0,1155.0,1165.0,1175.0,1185.0,1195.0,1205.0,1215.0,1225.0,1235.0,1245.0,1255.0,1265.0,1275.0,1285.0,1295.0,1305.0,1315.0,1325.0,1335.0,1345.0,1355.0,1365.0,1375.0,1385.0,1395.0,1405.0,1415.0,1425.0,1435.0,1442.0,1447.0,1455.0,1465.0,1475.0,1485.0,1495.0,1505.0,1512.0,1517.0,1525.0,1535.0,1545.0,1555.0,1565.0,1575.0,1585.0,1595.0,1605.0,1615.0,1625.0,1635.0,1645.0,1655.0,1665.0,1672.0,1677.0,1685.0,1695.0,1705.0,1715.0,1725.0,1735.0,1745.0,1755.0,1765.0,1775.0,1785.0,1800.0,1900.0,2000.0,2100.0,2200.0,2300.0,2400.0,2500.0,2600.0,2700.0,2800.0,2900.0,2940.0,2980.0,3020.0,3060.0,3100.0,3140.0,3180.0,3220.0,3260.0,3300.0,3340.0,3380.0,3420.0,3460.0,3500.0,3540.0,3580.0,3620.0,3660.0,3700.0,3740.0,3780.0,3820.0,3860.0,3900.0,3940.0,3980.0,4020.0,4060.0,4100.0,4140.0,4180.0,4220.0,4260.0,4300.0,4340.0,4380.0,4420.0,4460.0,4500.0,4540.0,4580.0,4620.0,4660.0,4700.0,4740.0,4780.0,4820.0,4860.0,4900.0,4940.0,4980.0,5020.0,5060.0,5100.0,5140.0,5180.0,5220.0,5260.0,5300.0,5340.0,5380.0,5420.0,5460.0,5500.0,5540.0,5580.0,5620.0,5660.0,5700.0,5740.0,5780.0,5820.0,5860.0,5900.0,5940.0,5980.0,6020.0,6060.0,6100.0,6140.0,6180.0,6220.0,6260.0,6300.0,6340.0,6380.0,6420.0,6460.0,6500.0,6540.0,6580.0,6620.0,6660.0,6700.0,6740.0,6780.0,6820.0,6860.0,6900.0,6940.0,6980.0,7020.0,7060.0,7100.0,7140.0,7180.0,7220.0,7260.0,7300.0,7340.0,7380.0,7420.0,7460.0,7500.0,7540.0,7580.0,7620.0,7660.0,7700.0,7740.0,7780.0,7820.0,7860.0,7900.0,7940.0,8000.0,8100.0,8200.0,8300.0,8400.0,8500.0,8600.0,8700.0,8800.0,8900.0,9000.0,9100.0,9200.0,9300.0,9400.0,9500.0,9600.0,9700.0,9800.0,9900.0,10000.0,10025.0,10075.0,10125.0,10175.0],flux:[0.094296,0.242325,0.398721,0.568977,0.68321,0.741781,0.224644,0.574798,0.566067,0.745055,0.742145,0.444559,0.593716,0.900032,0.860378,0.698125,0.784345,0.656289,0.797441,0.755605,0.726138,0.634461,0.772703,0.71013,0.72541,0.723227,0.483122,0.681754,0.529687,0.422368,0.320141,0.504586,0.664656,0.700672,0.669021,0.605721,0.7225,0.740689,0.606085,0.598809,0.710858,0.674478,0.610086,0.687575,0.662473,0.597717,0.610086,0.606085,0.488942,0.493308,0.551515,0.548241,0.551879,0.570796,0.574434,0.553334,0.511498,0.510042,0.514044,0.514044,0.483485,0.434009,0.457656,0.444559,0.381622,0.386716,0.370708,0.390353,0.414364,0.428188,0.431826,0.420185,0.415455,0.396902,0.417638,0.420185,0.394355,0.41873,0.376165,0.423823,0.431099,0.404541,0.388535,0.366343,0.360486,0.380531,0.370345,0.386716,0.359322,0.359504,0.364888,0.380531,0.383481,0.372665,0.357915,0.347099,0.343166,0.340216,0.340216,0.3412,0.3412,0.342183,0.347099,0.351032,0.355949,0.360865,0.367748,0.375615,0.385447,0.396264,0.410029,0.424779,0.441495,0.46116,0.481809,0.504425,0.526057,0.548673,0.587021,0.567355,0.553589,0.588987,0.6647,0.694199,0.6706,0.696165,0.751229,0.764995,0.747296,0.79941,0.904621,0.908555,0.86529,0.887906,0.922321,0.93117,0.911504,0.881023,0.881023,0.915438,0.952802,0.980334,1.0,0.999017,0.988201,0.996067,0.99115,0.977384,0.996067,0.989184,0.967552,0.963618,0.950836,0.949853,0.967552,0.960669,0.926254,0.929204,0.917404,0.901672,0.912488,0.904621,0.889872,0.87119,0.973451,0.92527,0.944936,0.929204,0.944936,0.94002,0.929204,0.920354,0.910521,0.902655,0.894789,0.887906,0.882006,0.876106,0.87119,0.86824,0.86529,0.863324,0.861357,0.85939,0.857424,0.855457,0.853491,0.850541,0.849558,0.847591,0.845624,0.843658,0.840708,0.839725,0.837758,0.835792,0.833825,0.831858,0.829892,0.827925,0.826942,0.824975,0.823009,0.821042,0.819076,0.818092,0.816126,0.814159,0.814159,0.812193,0.811209,0.809243,0.807276,0.807276,0.80531,0.804326,0.80236,0.800393,0.800393,0.798427,0.797443,0.795477,0.79351,0.79351,0.791544,0.79056,0.788594,0.787611,0.786627,0.783677,0.780728,0.777778,0.775811,0.772861,0.769912,0.767945,0.764995,0.763029,0.761062,0.758112,0.756146,0.754179,0.752212,0.750246,0.748279,0.746313,0.745329,0.743363,0.741396,0.740413,0.737618,0.726138,0.736601,0.727446]},
+Scd:{wav:[915,925,935,945,955,965,975,985,995,1005,1015,1025,1035,1045,1055,1065,1075,1085,1095,1105,1115,1125,1135,1145,1155,1165,1175,1185,1195,1205,1215,1225,1235,1245,1255,1265,1275,1285,1295,1305,1315,1325,1335,1345,1355,1365,1375,1385,1395,1405,1415,1425,1435,1442,1447,1455,1465,1475,1485,1495,1505,1512,1517,1525,1535,1545,1555,1565,1575,1585,1595,1605,1615,1625,1635,1645,1655,1665,1672,1677,1685,1695,1705,1715,1725,1735,1745,1755,1765,1775,1785,1800,1900,2000,2100,2200,2300,2400,2500,2600,2700,2800,2900,2940,2980,3020,3060,3100,3140,3180,3220,3260,3300,3340,3380,3420,3460,3500,3540,3580,3620,3660,3700,3740,3780,3820,3860,3900,3940,3980,4020,4060,4100,4140,4180,4220,4260,4300,4340,4380,4420,4460,4500,4540,4580,4620,4660,4700,4740,4780,4820,4860,4900,4940,4980,5020,5060,5100,5140,5180,5220,5260,5300,5340,5380,5420,5460,5500,5540,5580,5620,5660,5700,5740,5780,5820,5860,5900,5940,5980,6020,6060,6100,6140,6180,6220,6260,6300,6340,6380,6420,6460,6500,6540,6580,6620,6660,6700,6740,6780,6820,6860,6900,6940,6980,7020,7060,7100,7140,7180,7220,7260,7300,7340,7380,7420,7460,7500,7540,7580,7620,7660,7700,7740,7780,7820,7860,7900,7940,8000,8100,8200,8300,8400,8500,8600,8700,8800,8900,9000,9100,9200,9300,9400,9500,9600,9700,9800,9900,10000,10025,10075,10125,10175],flux:[0.216806,0.562268,0.927212,1.324261,1.591056,1.727595,0.520964,1.337973,1.317405,1.735023,1.728167,1.034044,1.382533,2.096652,2.003531,1.625334,1.827001,1.527642,1.857279,1.759016,1.690461,1.476226,1.798437,1.652756,1.688176,1.683035,1.123165,1.586486,1.233997,0.983198,0.744968,1.174582,1.547067,1.630476,1.556778,1.409384,1.680178,1.721882,1.408813,1.392816,1.652756,1.568205,1.417953,1.597341,1.539068,1.389389,1.417383,1.40767,1.134592,1.144875,1.280843,1.273416,1.281985,1.325405,1.333402,1.284842,1.187722,1.184294,1.193435,1.192864,1.122023,1.007193,1.061466,1.031759,0.885507,0.896362,0.859227,0.905502,0.960918,0.992911,1.000909,0.974058,0.963774,0.920927,0.968916,0.974058,0.914643,0.97063,0.87351,0.983198,0.999195,0.938066,0.900932,0.849515,0.835804,0.881508,0.858656,0.89579,0.832948,0.832377,0.844945,0.880365,0.843836,0.780822,0.712329,0.655708,0.613699,0.577169,0.547945,0.528767,0.520548,0.521461,0.528767,0.53242,0.536986,0.541553,0.546119,0.550685,0.555251,0.558904,0.561644,0.56347,0.56621,0.570776,0.576256,0.581735,0.587215,0.589954,0.599087,0.586301,0.568037,0.582648,0.73516,0.807306,0.70411,0.708676,0.76621,0.777169,0.758904,0.801826,0.884018,0.883105,0.834703,0.853881,0.890411,0.891324,0.87032,0.844749,0.853881,0.878539,0.891324,0.910502,0.917808,0.912329,0.918721,0.920548,0.916895,0.907763,0.900457,0.89589,0.90137,0.926941,0.896804,0.894977,1.0,0.980822,0.858447,0.829224,0.821918,0.809132,0.809132,0.807306,0.809132,0.785388,0.781735,0.817352,0.832877,0.808219,0.781735,0.778082,0.773516,0.774429,0.775342,0.772603,0.76895,0.765297,0.760731,0.755251,0.750685,0.746119,0.740639,0.736073,0.730594,0.726027,0.721461,0.716895,0.713242,0.708676,0.70411,0.699543,0.694977,0.691324,0.686758,0.682192,0.678539,0.673973,0.669406,0.665753,0.661187,0.656621,0.652968,0.648402,0.644749,0.641096,0.637443,0.63379,0.630137,0.625571,0.621918,0.618265,0.614612,0.610959,0.607306,0.603653,0.6,0.59726,0.593607,0.590868,0.587215,0.583562,0.579909,0.577169,0.573516,0.570776,0.567123,0.564384,0.560731,0.557991,0.554338,0.549772,0.542466,0.53516,0.526941,0.519635,0.512329,0.505023,0.497717,0.490411,0.484018,0.476712,0.47032,0.463014,0.456621,0.450228,0.443836,0.437443,0.431963,0.426484,0.421005,0.421005,0.416952,0.409679,0.416641,0.41155]},
+Im:{wav:[915.0,925.0,935.0,945.0,955.0,965.0,975.0,985.0,995.0,1005.0,1015.0,1025.0,1035.0,1045.0,1055.0,1065.0,1075.0,1085.0,1095.0,1105.0,1115.0,1125.0,1135.0,1145.0,1155.0,1165.0,1175.0,1185.0,1195.0,1205.0,1215.0,1225.0,1235.0,1245.0,1255.0,1265.0,1275.0,1285.0,1295.0,1305.0,1315.0,1325.0,1335.0,1345.0,1355.0,1365.0,1375.0,1385.0,1395.0,1405.0,1415.0,1425.0,1435.0,1442.0,1447.0,1455.0,1465.0,1475.0,1485.0,1500.0,1600.0,1700.0,1800.0,1900.0,2000.0,2100.0,2200.0,2300.0,2400.0,2500.0,2600.0,2700.0,2800.0,2900.0,2940.0,2980.0,3020.0,3060.0,3100.0,3140.0,3180.0,3220.0,3260.0,3300.0,3340.0,3380.0,3420.0,3460.0,3500.0,3540.0,3580.0,3620.0,3660.0,3700.0,3740.0,3780.0,3820.0,3860.0,3900.0,3940.0,3980.0,4020.0,4060.0,4100.0,4140.0,4180.0,4220.0,4260.0,4300.0,4340.0,4380.0,4420.0,4460.0,4500.0,4540.0,4580.0,4620.0,4660.0,4700.0,4740.0,4780.0,4820.0,4860.0,4900.0,4940.0,4980.0,5020.0,5060.0,5100.0,5140.0,5180.0,5220.0,5260.0,5300.0,5340.0,5380.0,5420.0,5460.0,5500.0,5540.0,5580.0,5620.0,5660.0,5700.0,5740.0,5780.0,5820.0,5860.0,5900.0,5940.0,5980.0,6020.0,6060.0,6100.0,6140.0,6180.0,6220.0,6260.0,6300.0,6340.0,6380.0,6420.0,6460.0,6500.0,6540.0,6580.0,6620.0,6660.0,6700.0,6740.0,6780.0,6820.0,6860.0,6900.0,6940.0,6980.0,7020.0,7060.0,7100.0,7140.0,7180.0,7220.0,7260.0,7300.0,7340.0,7380.0,7420.0,7460.0,7500.0,7540.0,7580.0,7620.0,7660.0,7700.0,7740.0,7780.0,7820.0,7860.0,7900.0,7940.0,8000.0,8100.0,8200.0,8300.0,8400.0,8500.0,8600.0,8700.0,8800.0,8900.0,9000.0,9100.0,9200.0,9300.0,9400.0,9500.0,9600.0,9700.0,9800.0,9900.0,10000.0,10025.0,10075.0,10125.0,10175.0],flux:[0.302918,0.790126,1.304939,1.86425,2.236883,2.427903,0.730795,1.871485,1.841819,2.423923,2.420305,1.455078,1.941309,2.92752,2.78932,2.261484,2.538969,2.12654,2.581658,2.417411,2.312857,2.003897,2.448162,2.252439,2.290064,2.273785,1.497044,2.160186,1.724603,1.369336,1.04699,1.642117,2.112431,2.184425,2.077338,1.919241,2.203599,2.229647,1.819751,1.835669,2.138841,2.010409,1.833137,2.028498,1.957951,1.776699,1.785744,1.769826,1.376571,1.393937,1.606663,1.57953,1.611004,1.648991,1.642117,1.582424,1.469187,1.47389,1.472804,1.458333,1.398359,1.339015,1.27904,1.204545,1.121212,1.037247,0.96149,0.894571,0.833333,0.777778,0.728535,0.685606,0.649621,0.618687,0.608586,0.598485,0.589646,0.582071,0.575126,0.568813,0.563763,0.559975,0.555556,0.55303,0.551768,0.550505,0.547348,0.548611,0.55303,0.531566,0.513258,0.513258,0.511995,0.761364,0.984217,0.587121,0.613636,0.690657,0.647727,0.638258,0.644571,0.696338,0.685606,0.667929,0.650253,0.676136,0.655303,0.642677,0.599747,0.651515,0.632576,0.623106,0.628788,0.630051,0.623106,0.621212,0.603535,0.614899,0.594066,0.585227,0.582071,0.565657,0.750631,0.564394,0.664141,0.83649,1.0,0.532197,0.541035,0.505682,0.504419,0.510732,0.496843,0.522096,0.49053,0.488636,0.468434,0.469697,0.47601,0.467172,0.462753,0.458333,0.454545,0.45202,0.448864,0.44697,0.445076,0.443813,0.441288,0.439394,0.4375,0.434343,0.431187,0.42803,0.425505,0.422348,0.419192,0.416035,0.412879,0.410354,0.407828,0.404672,0.402146,0.399621,0.397096,0.394571,0.392045,0.38952,0.386995,0.385101,0.382576,0.380682,0.378157,0.376263,0.374369,0.372475,0.370581,0.368056,0.366162,0.364268,0.362374,0.36048,0.358586,0.356692,0.355429,0.353535,0.351641,0.350379,0.348485,0.346591,0.344697,0.343434,0.342172,0.340278,0.339015,0.337121,0.335859,0.334596,0.332702,0.331439,0.329545,0.325758,0.322601,0.319444,0.316288,0.313763,0.310606,0.308081,0.305556,0.30303,0.300505,0.29798,0.295455,0.292929,0.290404,0.28851,0.285985,0.284091,0.282197,0.280303,0.280303,0.272585,0.265627,0.271309,0.267146]}
 };
 
 function interpSED(sed,lA){
@@ -3605,14 +3637,14 @@ function interpSED(sed,lA){
   return flux[lo]+(lA-wav[lo])/(wav[hi]-wav[lo])*(flux[hi]-flux[lo]);
 }
 const lMin=3000,lMax=10200,STEP=30,Z_MAX=1.21;
-function computeGlobalPeak(sed){
-  let pk=0;
+const GLOBAL_PEAK={};
+for(const key of ['E','Sbc','Scd','Im']){
+  let pk=0;const sed=CWW[key];
   for(let l=lMin;l<=lMax;l+=STEP){const f=interpSED(sed,l);if(f>pk)pk=f;}
   for(let z=0;z<=Z_MAX+0.01;z+=0.05)
     for(let l=lMin;l<=lMax;l+=STEP){const f=interpSED(sed,l/(1+z));if(f>pk)pk=f;}
-  return pk||1;
+  GLOBAL_PEAK[key]=pk||1;
 }
-const GLOBAL_PEAK={E:computeGlobalPeak(CWW.E),Scd:computeGlobalPeak(CWW.Scd)};
 
 function filterSDSS_g(lA){const c=4770,w=680;return Math.max(0,Math.exp(-Math.pow((lA-c)/w,2)*2));}
 function filterSDSS_r(lA){const c=6220,w=750;return Math.max(0,Math.exp(-Math.pow((lA-c)/w,2)*2));}
@@ -3639,26 +3671,24 @@ function interpObs(type,z){
   const i=Math.min(Math.floor(z/0.01),arr.length-2);
   return arr[i]+(z-zArr[i])/0.01*(arr[i+1]-arr[i]);
 }
+function figWidth(){const fig=document.querySelector('.fig');return fig?fig.getBoundingClientRect().width:900;}
 
-function figWidth(){
-  const fig=document.querySelector('.fig');
-  return fig?fig.getBoundingClientRect().width:900;
-}
-
-function drawSpec(canvasId,sedKey,label,z){
-  const sed=CWW[sedKey],pk=GLOBAL_PEAK[sedKey];
-  const solidCol=COL[sedKey].solid,dashCol=COL[sedKey].dash;
-  const canvas=document.getElementById(canvasId);if(!canvas)return;
+function drawSpec(panelIdx,z){
+  const sedKey=panelSED[panelIdx],sed=CWW[sedKey],pk=GLOBAL_PEAK[sedKey];
+  const solidCol=SED_COL[sedKey].solid,dashCol=SED_COL[sedKey].dash;
+  const canvas=document.getElementById('spec'+panelIdx);if(!canvas)return;
   const dpr=window.devicePixelRatio||1;
   const W=Math.round((figWidth()-10)/2),H=230;
   canvas.style.width=W+'px';canvas.style.height=H+'px';
   canvas.width=Math.round(W*dpr);canvas.height=H*dpr;
   const ctx=canvas.getContext('2d');ctx.scale(dpr,dpr);
-  const pad={l:46,r:12,t:46,b:42};
+  const pad={l:46,r:12,t:30,b:42};
   const pw=W-pad.l-pad.r,ph=H-pad.t-pad.b;
   ctx.fillStyle=bgSurf;ctx.beginPath();ctx.roundRect(0,0,W,H,8);ctx.fill();
+  // Panel title
   ctx.font='bold 11px sans-serif';ctx.textAlign='center';ctx.fillStyle=solidCol;
-  ctx.fillText(label,pad.l+pw/2,13);
+  ctx.fillText(SED_LABEL[sedKey],pad.l+pw/2,15);
+  // Grid
   ctx.strokeStyle=gridCol;ctx.lineWidth=0.8;
   for(let i=0;i<=4;i++){const y=pad.t+ph*i/4;ctx.beginPath();ctx.moveTo(pad.l,y);ctx.lineTo(pad.l+pw,y);ctx.stroke();}
   const toX=l=>pad.l+((l-lMin)/(lMax-lMin))*pw;
@@ -3681,48 +3711,49 @@ function drawSpec(canvasId,sedKey,label,z){
   shadeStroke(filterR,'rgba(185,55,35,0.45)',[4,3]);
   shadeStroke(filterSDSS_g,'rgba(50,150,50,0.65)',[]);
   shadeStroke(filterSDSS_r,'rgba(190,55,35,0.6)',[]);
+  // Filter labels
   ctx.font='10px sans-serif';ctx.textAlign='center';
   ctx.fillStyle='rgba(45,135,45,0.85)';ctx.fillText('SDSS g',toX(4770),pad.t+10);
   ctx.fillStyle='rgba(175,50,30,0.85)';ctx.fillText('SDSS r',toX(6220),pad.t+10);
-  ctx.fillStyle='rgba(45,120,45,0.6)';ctx.fillText('B',toX(4400),pad.t+20);
+  ctx.fillStyle='rgba(45,120,45,0.6)'; ctx.fillText('B',toX(4400),pad.t+20);
   ctx.fillStyle='rgba(165,45,25,0.55)';ctx.fillText('R',toX(6500),pad.t+20);
+  // Lyman break — shaded region + line, NO text label
   const lymanObs=912*(1+z);
   if(lymanObs>lMin&&lymanObs<lMax){
     ctx.fillStyle=isDark?'rgba(100,100,200,0.10)':'rgba(100,100,200,0.07)';
     ctx.fillRect(pad.l,pad.t,toX(lymanObs)-pad.l,ph);
     ctx.strokeStyle=isDark?'rgba(130,130,230,0.6)':'rgba(80,80,190,0.55)';
     ctx.lineWidth=1.2;ctx.setLineDash([3,3]);
-    ctx.beginPath();ctx.moveTo(toX(lymanObs),pad.t);ctx.lineTo(toX(lymanObs),pad.t+ph);ctx.stroke();ctx.setLineDash([]);
-    ctx.font='9px sans-serif';ctx.textAlign='center';
-    ctx.fillStyle=isDark?'rgba(150,150,235,0.85)':'rgba(70,70,180,0.8)';
-    ctx.fillText('Lyα',Math.min(Math.max(toX(lymanObs)-2,pad.l+22),pad.l+pw-10),pad.t+ph-6);
+    ctx.beginPath();ctx.moveTo(toX(lymanObs),pad.t);ctx.lineTo(toX(lymanObs),pad.t+ph);ctx.stroke();
+    ctx.setLineDash([]);
   }
+  // 4000Å break — dashed line only, NO label
   const lBreak=4000*(1+z);
   if(lBreak>=lMin&&lBreak<=lMax){
     ctx.strokeStyle=isDark?'rgba(255,210,60,0.55)':'rgba(170,110,0,0.5)';
     ctx.lineWidth=1;ctx.setLineDash([3,3]);
-    ctx.beginPath();ctx.moveTo(toX(lBreak),pad.t);ctx.lineTo(toX(lBreak),pad.t+ph);ctx.stroke();ctx.setLineDash([]);
-    ctx.font='9px sans-serif';ctx.textAlign='center';
-    ctx.fillStyle=isDark?'rgba(255,210,60,0.9)':'rgba(140,90,0,0.9)';
-    ctx.fillText(`4000×(1+z) = ${Math.round(lBreak)} Å`,Math.min(Math.max(toX(lBreak),pad.l+42),pad.l+pw-42),pad.t-6);
+    ctx.beginPath();ctx.moveTo(toX(lBreak),pad.t);ctx.lineTo(toX(lBreak),pad.t+ph);ctx.stroke();
+    ctx.setLineDash([]);
   }
+  // Hα — dashed line only, NO label
   const haObs=6563*(1+z);
   if(haObs>=lMin&&haObs<=lMax){
     ctx.strokeStyle=isDark?'rgba(255,100,100,0.45)':'rgba(160,30,30,0.35)';
     ctx.lineWidth=1;ctx.setLineDash([2,4]);
-    ctx.beginPath();ctx.moveTo(toX(haObs),pad.t);ctx.lineTo(toX(haObs),pad.t+ph);ctx.stroke();ctx.setLineDash([]);
-    ctx.font='9px sans-serif';ctx.textAlign='center';
-    ctx.fillStyle=isDark?'rgba(255,110,110,0.85)':'rgba(160,30,30,0.8)';
-    ctx.fillText('Hα',Math.min(Math.max(toX(haObs),pad.l+14),pad.l+pw-14),pad.t+30);
+    ctx.beginPath();ctx.moveTo(toX(haObs),pad.t);ctx.lineTo(toX(haObs),pad.t+ph);ctx.stroke();
+    ctx.setLineDash([]);
   }
+  // Rest-frame SED (dashed)
   ctx.strokeStyle=dashCol;ctx.lineWidth=1.8;ctx.setLineDash([6,4]);
   ctx.beginPath();let fr=true;
   for(let l=lMin;l<=lMax;l+=STEP){const pt=[toX(l),toY(interpSED(sed,l))];if(fr){ctx.moveTo(...pt);fr=false;}else ctx.lineTo(...pt);}
   ctx.stroke();ctx.setLineDash([]);
+  // Redshifted SED (solid)
   ctx.strokeStyle=solidCol;ctx.lineWidth=2.2;
   ctx.beginPath();let fo=true;
   for(let l=lMin;l<=lMax;l+=STEP){const pt=[toX(l),toY(interpSED(sed,l/(1+z)))];if(fo){ctx.moveTo(...pt);fo=false;}else ctx.lineTo(...pt);}
   ctx.stroke();
+  // X-axis
   const xTicks=[3000,4000,5000,6000,7000,8000,9000,10000];
   xTicks.forEach((lt,i)=>{
     const x=toX(lt);
@@ -3743,81 +3774,50 @@ function drawKcorr(canvasId,band,title,z){
   canvas.style.width=W+'px';canvas.style.height=H+'px';
   canvas.width=Math.round(W*dpr);canvas.height=H*dpr;
   const ctx=canvas.getContext('2d');ctx.scale(dpr,dpr);
-
-  // Right padding wide enough for "Sbc" label (longest, ~24px at 10px bold font)
   const pad={l:46,r:34,t:24,b:40};
   const pw=W-pad.l-pad.r,ph=H-pad.t-pad.b;
-
   ctx.fillStyle=bgSurf;ctx.beginPath();ctx.roundRect(0,0,W,H,8);ctx.fill();
   ctx.font='bold 11px sans-serif';ctx.textAlign='center';
   ctx.fillStyle=isDark?'#c8c7c0':'#2a2a28';
   ctx.fillText(title,pad.l+pw/2,15);
-
   const allVals=Object.values(KC[band]).flat();
   const yMin=Math.min(-0.5,Math.min(...allVals)-0.1);
   const yMax=Math.max(...allVals)+0.2;
   const toX=z=>pad.l+(z/Z_MAX)*pw;
   const toY=v=>pad.t+ph*((yMax-v)/(yMax-yMin));
-
-  // Grid
   ctx.strokeStyle=gridCol;ctx.lineWidth=0.8;
-  for(let v=Math.ceil(yMin*2)/2;v<=yMax;v+=0.5){
-    ctx.beginPath();ctx.moveTo(pad.l,toY(v));ctx.lineTo(pad.l+pw,toY(v));ctx.stroke();
-  }
-  for(let zi=0;zi<=Z_MAX+0.001;zi+=0.2){
-    ctx.beginPath();ctx.moveTo(toX(zi),pad.t);ctx.lineTo(toX(zi),pad.t+ph);ctx.stroke();
-  }
-  // Zero line
+  for(let v=Math.ceil(yMin*2)/2;v<=yMax;v+=0.5){ctx.beginPath();ctx.moveTo(pad.l,toY(v));ctx.lineTo(pad.l+pw,toY(v));ctx.stroke();}
+  for(let zi=0;zi<=Z_MAX+0.001;zi+=0.2){ctx.beginPath();ctx.moveTo(toX(zi),pad.t);ctx.lineTo(toX(zi),pad.t+ph);ctx.stroke();}
   if(yMin<0&&yMax>0){
     ctx.strokeStyle=isDark?'rgba(255,255,255,0.2)':'rgba(0,0,0,0.18)';ctx.lineWidth=1;
     ctx.beginPath();ctx.moveTo(pad.l,toY(0));ctx.lineTo(pad.l+pw,toY(0));ctx.stroke();
   }
-
   const tracks=[{key:'E',col:'#E24B4A'},{key:'Sbc',col:'#9085e9'},{key:'Scd',col:'#2a78d6'},{key:'Im',col:'#eda100'}];
   for(const {key,col} of tracks){
     ctx.strokeStyle=col;ctx.lineWidth=1.8;ctx.setLineDash([]);
     ctx.beginPath();let first=true;
-    for(let i=0;i<KC.z.length;i++){
-      const pt=[toX(KC.z[i]),toY(KC[band][key][i])];
-      if(first){ctx.moveTo(...pt);first=false;}else ctx.lineTo(...pt);
-    }
+    for(let i=0;i<KC.z.length;i++){const pt=[toX(KC.z[i]),toY(KC[band][key][i])];if(first){ctx.moveTo(...pt);first=false;}else ctx.lineTo(...pt);}
     ctx.stroke();
   }
-
-  // Type labels — drawn inside the right padding, clipped to canvas
   ctx.font='bold 10px sans-serif';ctx.textAlign='left';
-  for(const {key,col} of tracks){
-    const lastY=toY(KC[band][key][KC[band][key].length-1]);
-    ctx.fillStyle=col;
-    ctx.fillText(key,pad.l+pw+4,lastY+4);
-  }
-
-  // Current-z line
+  for(const {key,col} of tracks){ctx.fillStyle=col;ctx.fillText(key,pad.l+pw+4,toY(KC[band][key][KC[band][key].length-1])+4);}
   const xz=toX(z);
   ctx.strokeStyle=isDark?'rgba(255,255,255,0.4)':'rgba(0,0,0,0.3)';
   ctx.lineWidth=1.2;ctx.setLineDash([4,3]);
   ctx.beginPath();ctx.moveTo(xz,pad.t);ctx.lineTo(xz,pad.t+ph);ctx.stroke();ctx.setLineDash([]);
-
-  // Dots
   for(const {key,col} of tracks){
     const v=interpKC(KC[band][key],z);
     ctx.fillStyle=col;ctx.beginPath();ctx.arc(xz,toY(v),4,0,Math.PI*2);ctx.fill();
     ctx.strokeStyle=bgSurf;ctx.lineWidth=1.2;ctx.beginPath();ctx.arc(xz,toY(v),4,0,Math.PI*2);ctx.stroke();
   }
-
-  // X axis
   ctx.fillStyle=textSec;ctx.font='10px sans-serif';ctx.textAlign='center';
   for(let zt=0;zt<=Z_MAX+0.001;zt+=0.2)ctx.fillText(zt.toFixed(1),toX(zt),H-13);
   ctx.fillText('Redshift z',pad.l+pw/2,H-2);
-
-  // Y axis
   ctx.textAlign='right';
   for(let v=Math.ceil(yMin*2)/2;v<=yMax;v+=0.5){
-    if(Math.abs(v%1)<0.01||Math.abs(v%1-0.5)<0.01)
-      ctx.fillText(v.toFixed(1),pad.l-4,toY(v)+4);
+    if(Math.abs(v%1)<0.01||Math.abs(v%1-0.5)<0.01)ctx.fillText(v.toFixed(1),pad.l-4,toY(v)+4);
   }
-  ctx.save();ctx.translate(11,pad.t+ph/2);ctx.rotate(-Math.PI/2);
-  ctx.textAlign='center';ctx.fillText('K (mag)',0,0);ctx.restore();
+  ctx.save();ctx.translate(11,pad.t+ph/2);ctx.rotate(-Math.PI/2);ctx.textAlign='center';ctx.fillText('K (mag)',0,0);ctx.restore();
 }
 
 function drawColors(z){
@@ -3840,9 +3840,7 @@ function drawColors(z){
   for(const {key,col} of tracks){
     ctx.strokeStyle=col;ctx.lineWidth=2;ctx.setLineDash([]);
     ctx.beginPath();let first=true;
-    for(let i=0;i<OBS.z.length;i++){
-      const pt=[toX(OBS.z[i]),toY(OBS[key][i])];if(first){ctx.moveTo(...pt);first=false;}else ctx.lineTo(...pt);
-    }
+    for(let i=0;i<OBS.z.length;i++){const pt=[toX(OBS.z[i]),toY(OBS[key][i])];if(first){ctx.moveTo(...pt);first=false;}else ctx.lineTo(...pt);}
     ctx.stroke();
   }
   ctx.font='bold 11px sans-serif';ctx.textAlign='left';
@@ -3861,26 +3859,48 @@ function drawColors(z){
   ctx.fillText('Redshift z',pad.l+pw/2,pad.t+ph+30);
   ctx.textAlign='right';
   for(const c of [0,0.5,1.0,1.5,2.0,2.5])ctx.fillText(c.toFixed(1),pad.l-5,toY(c)+4);
-  ctx.save();ctx.translate(11,pad.t+ph/2);ctx.rotate(-Math.PI/2);
-  ctx.textAlign='center';ctx.fillText('Observed g−r (mag)',0,0);ctx.restore();
+  ctx.save();ctx.translate(11,pad.t+ph/2);ctx.rotate(-Math.PI/2);ctx.textAlign='center';ctx.fillText('Observed g−r (mag)',0,0);ctx.restore();
 }
 
 function fmt(v){return(v>=0?'+':'')+v.toFixed(2)+' mag';}
 
+// Set label HTML using innerHTML so sub tags render, bypassing any CSS text-transform
+function setLabel(id, band, sedKey){
+  // band: 'gB' or 'rR'; use lowercase band letters
+  const sub = band==='gB' ? 'g→B' : 'r→R';
+  document.getElementById(id).innerHTML=`K<sub>${sub}</sub> ${sedKey}`;
+}
+
+function updateReadout(){
+  const z=parseFloat(document.getElementById('zSlider').value);
+  for(let p=0;p<2;p++){
+    const key=panelSED[p];
+    setLabel(`lbl_kgb${p}`,'gB',key);
+    setLabel(`lbl_krr${p}`,'rR',key);
+    document.getElementById(`kgb${p}`).textContent=fmt(interpKC(KC.gB[key],z));
+    document.getElementById(`krr${p}`).textContent=fmt(interpKC(KC.rR[key],z));
+  }
+}
+
 function update(){
   const z=parseFloat(document.getElementById('zSlider').value);
   document.getElementById('zDisplay').textContent=z.toFixed(2);
-  drawSpec('specE','E','Elliptical (E)',z);
-  drawSpec('specScd','Scd','Star-forming (Scd)',z);
+  drawSpec(0,z);drawSpec(1,z);
   drawKcorr('kcorrGB','gB','K-correction: g → B',z);
   drawKcorr('kcorrRR','rR','K-correction: r → R',z);
   drawColors(z);
-  document.getElementById('kgbE').textContent=fmt(interpKC(KC.gB.E,z));
-  document.getElementById('krrE').textContent=fmt(interpKC(KC.rR.E,z));
-  document.getElementById('kgbScd').textContent=fmt(interpKC(KC.gB.Scd,z));
-  document.getElementById('krrScd').textContent=fmt(interpKC(KC.rR.Scd,z));
+  updateReadout();
 }
 
+document.querySelectorAll('.sed-btn').forEach(btn=>{
+  btn.addEventListener('click',()=>{
+    const p=parseInt(btn.dataset.panel),sed=btn.dataset.sed;
+    panelSED[p]=sed;
+    document.querySelectorAll(`#sel${p} .sed-btn`).forEach(b=>b.className='sed-btn');
+    btn.classList.add(`active-${sed}`);
+    update();
+  });
+});
 document.getElementById('zSlider').addEventListener('input',update);
 let animId=null,animZ=0,animDir=1;
 document.getElementById('playBtn').addEventListener('click',()=>{
